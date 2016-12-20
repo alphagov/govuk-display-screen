@@ -1,4 +1,16 @@
-# Display Dashboard
+# GOV.UK Display Screen
+
+Screen to display live data from GOV.UK. Includes number of people on GOV.UK,
+latest searches, trending and recent content. Not publicly accessible because
+there's sometimes personal data in the latest searches.
+
+It runs on a TV on the 6th floor of Aviation House.
+
+![screenshot](docs/screenshot.png)
+
+http://govuk-display-screen.herokuapp.com/
+
+## Running locally
 
 To run the server you will need the following `ENV` variables set:
 
