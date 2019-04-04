@@ -40,7 +40,7 @@ end
 get '/feed' do
   http = Net::HTTP.new('www.gov.uk', 443)
   http.use_ssl = true
-  req = Net::HTTP::Get.new('/government/feed.atom')
+  req = Net::HTTP::Get.new('/government/feed')
   response = http.request(req)
   Hash.from_xml(response.body).to_json
 end
