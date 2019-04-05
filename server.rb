@@ -22,6 +22,10 @@ get '/' do
   File.read(File.join('public', 'index.html'))
 end
 
+get '/eu-exit' do
+  redirect '/eu-exit/index.html' 
+end
+
 get '/search' do
   File.read(File.join('public', 'search.html'))
 end

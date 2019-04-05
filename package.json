@@ -1,0 +1,11 @@
+{
+  "name": "govuk-display-screen",
+  "version": "1.0.0",
+  "engines": {
+    "node": "10.x",
+    "npm": "6.x"
+  },
+  "scripts": {
+    "build": "(cd eu-exit-screen && npm install install && npm run-script build && mv ./build ../public/eu-exit)"
+  }
+}

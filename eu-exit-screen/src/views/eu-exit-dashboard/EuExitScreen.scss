@@ -1,0 +1,13 @@
+@import "../../../node_modules/govuk-frontend/all";
+
+.EuExitScreen {
+  .EuExitScreen-left-view {
+    padding: govuk-spacing(8);
+    background-color: govuk-colour('blue');
+    height: calc(100vh - 63px);
+  }
+  .EuExitScreen-right-view {
+    padding: govuk-spacing(7);
+    height: calc(100vh - 63px);
+  }
+}

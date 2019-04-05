@@ -1,0 +1,13 @@
+@import "../../../node_modules/govuk-frontend/all";
+
+.Navbar {
+  .govuk-header {
+    border-bottom: 0;
+
+    .govuk-header__container {
+      padding: 10px govuk-spacing(6) 0px;
+      border-bottom: 10px solid govuk-colour('black');
+      margin-bottom: 0;
+    }
+  }
+}
