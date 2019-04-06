@@ -90,6 +90,8 @@ class LiveSearch extends Component {
 
     var listItems = [];
 
+    if (!data.rows) return listItems;
+
     data.rows.forEach( (item, i) => {
       var searchTerm = item[0].split(' - ')[0];
 
