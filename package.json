@@ -6,6 +6,6 @@
     "npm": "6.x"
   },
   "scripts": {
-    "build": "(cd eu-exit-screen && npm install install && npm run-script build && rm -rf ../public/eu-exit && mv ./build ../public/eu-exit && chmod 755 ../public/eu-exit/*)"
+    "build": "(cd eu-exit-screen && npm install && npm run-script build && rm -rf ../public/eu-exit && mv ./build ../public/eu-exit && chmod 755 ../public/eu-exit/*)"
   }
 }
