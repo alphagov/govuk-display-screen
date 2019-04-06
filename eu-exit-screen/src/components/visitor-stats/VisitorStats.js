@@ -100,7 +100,7 @@ class VisitorStats extends Component {
   render() {
     return (
       <div className="VisitorStats">
-        <h2 className="govuk-heading-m">GOV.UK average user traffic</h2>
+        <h2 className="govuk-heading-l">GOV.UK average user traffic</h2>
         <div className="govuk-grid-row">
           <div className="govuk-grid-column-one-half VisitorStats-stat VisitorStats-stat--today">
             <p className="govuk-body govuk-!-font-size-80 govuk-!-font-weight-bold">{this.state.today}</p>

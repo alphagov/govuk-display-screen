@@ -1,0 +1,22 @@
+@import "../../../node_modules/govuk-frontend/all";
+
+.TopContent {
+
+  .TopContent-content-list-item {
+    .govuk-body {
+      font-weight: bold;
+    }
+  }
+
+  .TopContent-content-list-item-stats li {
+    display: inline-block;
+
+    .triangle {
+      color: govuk-colour('light-green');
+    }
+
+    &:last-child {
+      margin-left: govuk-spacing(5);
+    }
+  }
+}

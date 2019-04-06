@@ -4,17 +4,17 @@
   .EuExitScreen-left-view {
     padding: govuk-spacing(8);
     background-color: govuk-colour('blue');
-    height: calc(100vh - 63px);
+    min-height: calc(100vh - 63px);
+    height: auto;
 
-    .VisitorStats {
-      .govuk-heading-m, .govuk-body {
-        color: govuk-colour('white');
-      }
+    .govuk-heading-l, .govuk-body, .govuk-list {
+      color: govuk-colour('white');
     }
 
   }
   .EuExitScreen-right-view {
     padding: govuk-spacing(7);
-    height: calc(100vh - 63px);
+    min-height: calc(100vh - 63px);
+    height: auto;
   }
 }
