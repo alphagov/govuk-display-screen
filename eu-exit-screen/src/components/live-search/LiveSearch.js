@@ -10,8 +10,7 @@ class LiveSearch extends Component {
     this.state = { 
       GaProfileID: process.env.REACT_APP_GA_PROFILE_ID ? process.env.REACT_APP_GA_PROFILE_ID : "53872948",
       GaFilters: [
-        "ga:pagePath==/search",
-        "ga:pagePath==/find-eu-exit-guidance-business"
+        "ga:pagePath==/search"
       ],
       GaMetrics: "ga:activeVisitors",
       GaDimensions: "ga:pageTitle,ga:pagePath",
