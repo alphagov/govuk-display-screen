@@ -50,12 +50,12 @@ class TopContent extends Component {
             }
           </p>
           <div className="TopContent-content-list-item-stats">
-            <ul class="govuk-list">
+            <ul className="govuk-list">
               <li>
                 Visits: {item.week2}
               </li>
               <li>
-                <span class="triangle">▲</span>
+                <span className="triangle">▲</span>
                 {item.percent_change}%
               </li>
             </ul>
