@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CountUp from 'react-countup';
 import 'whatwg-fetch';
 import './VisitorStats.scss';
 
@@ -53,8 +54,7 @@ class VisitorStats extends Component {
   };
 
   formatAverage(average) {
-    average = average.toFixed(0)
-    return average.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parseInt(average.toFixed(0));
   }
 
   setTodaysStats() {
@@ -68,7 +68,7 @@ class VisitorStats extends Component {
       var average = sum / results.data.length;
       average = this.formatAverage(average);
       this.setState({
-        today: average,
+        today: this.getCountUp(average),
       });
     });
   }
@@ -84,9 +84,16 @@ class VisitorStats extends Component {
       var average = sum / results.data.length;
       average = this.formatAverage(average);
       this.setState({
-        lastSevenDays: average,
+        lastSevenDays: this.getCountUp(average),
       });
     });
+  }
+
+  getCountUp(end) {
+    return <CountUp 
+      start={0} end={end}
+      formattingFn={(number) => number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+    />;
   }
 
   render() {
