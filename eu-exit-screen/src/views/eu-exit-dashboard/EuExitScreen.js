@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { initAll } from 'govuk-frontend';
-import Navbar from '../../components/navbar/Navbar';
 import './EuExitScreen.scss';
+
+// components
+import Navbar from '../../components/navbar/Navbar';
+import VisitorStats from '../../components/visitor-stats/VisitorStats';
 
 class EuExitScreen extends Component {
   componentDidMount() {
@@ -14,8 +17,8 @@ class EuExitScreen extends Component {
         <Navbar />
           <div className="govuk-grid-row">
             <div className="govuk-grid-column-one-third EuExitScreen-left-view">
-              <h2 className="govuk-heading-m">One-third column</h2>
-              <p className="govuk-body">This is a paragraph inside a one-third wide column</p>
+              <VisitorStats />
+              <hr />
             </div>
             <div className="govuk-grid-column-two-thirds EuExitScreen-right-view">
               <h1 className="govuk-heading-xl">Two-thirds column</h1>

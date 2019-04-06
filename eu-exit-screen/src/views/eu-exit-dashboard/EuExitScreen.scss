@@ -5,6 +5,13 @@
     padding: govuk-spacing(8);
     background-color: govuk-colour('blue');
     height: calc(100vh - 63px);
+
+    .VisitorStats {
+      .govuk-heading-m, .govuk-body {
+        color: govuk-colour('white');
+      }
+    }
+
   }
   .EuExitScreen-right-view {
     padding: govuk-spacing(7);
