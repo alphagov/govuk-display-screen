@@ -6,6 +6,7 @@ import './EuExitScreen.scss';
 import Navbar from '../../components/navbar/Navbar';
 import VisitorStats from '../../components/visitor-stats/VisitorStats';
 import TopContent from '../../components/top-content/TopContent';
+import LiveSearch from '../../components/live-search/LiveSearch';
 
 class EuExitScreen extends Component {
   componentDidMount() {
@@ -23,8 +24,7 @@ class EuExitScreen extends Component {
               <TopContent />
             </div>
             <div className="govuk-grid-column-two-thirds EuExitScreen-right-view">
-              <h1 className="govuk-heading-xl">Two-thirds column</h1>
-              <p className="govuk-body">This is a paragraph inside a two-thirds wide column</p>
+              <LiveSearch />
             </div>
           </div>
       </div>

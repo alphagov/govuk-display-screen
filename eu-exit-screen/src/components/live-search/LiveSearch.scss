@@ -1,0 +1,11 @@
+@import "../../../node_modules/govuk-frontend/all";
+
+.LiveSearch {
+  .LiveSeach-search-list-scroller {
+    max-height: 100vh;
+  }
+  .LiveSearch-saerch-list-item--eu-exit-related {
+    @include govuk-font(24, $weight: bold);
+    color: govuk-colour('green');
+  }
+}
