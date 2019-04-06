@@ -31,23 +31,24 @@ class VisitorStats extends Component {
   getEndpoint(offset = 0) {
     var date = new Date(this.state.startDate);
     date.setDate(date.getDate() - offset);
-    var end = this.toPerformanceString(date);
+    var end = this.toTimezoneStringString(date);
     date.setDate(date.getDate() - 1);
-    var start = this.toPerformanceString(date);
+    var start = this.toTimezoneStringString(date);
     return `https://www.performance.service.gov.uk/data/government/realtime?sort_by=_timestamp%3Adescending&start_at=${start}&end_at=${end}`;
   }
 
-  toPerformanceString(date) {
+  toTimezoneStringString(date) {
     function pad(number) {
       if ( number < 10 ) {
         return '0' + number;
       }
       return number;
     }
+    var extraHour = date.getTimezoneOffset() < 0 ? -1 : 0;
     return date.getUTCFullYear() +
       '-' + pad( date.getUTCMonth() + 1 ) +
       '-' + pad( date.getUTCDate() ) +
-      'T' + pad( date.getUTCHours() ) +
+      'T' + pad( date.getUTCHours() + extraHour ) +
       ':' + pad( date.getUTCMinutes() ) +
       ':' + pad( date.getUTCSeconds() ) +
       'Z';
