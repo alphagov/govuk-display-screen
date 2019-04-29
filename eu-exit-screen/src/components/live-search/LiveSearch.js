@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TypeIt from 'typeit';
 import 'whatwg-fetch';
 import './LiveSearch.scss';
 import top_eu_exit_search_terms from './top-eu-exit-search-terms.json';
@@ -38,9 +39,11 @@ class LiveSearch extends Component {
     .then(res => res.json())
     .then(
       (result) => {
+        var formattedResults = this.formatSearchResults(result);
         this.setState({
-          results: this.formatSearchResults(result)
+          results: formattedResults
         });
+        this.initTyped(formattedResults);
       },
       (err) => {
         console.log(err);
@@ -100,17 +103,29 @@ class LiveSearch extends Component {
       }
 
       if(new RegExp(this.state.euWordHighlightList.join("|")).test(searchTerm.toLowerCase())) {
-        searchTerm = <span className="LiveSearch-saerch-list-item--eu-exit-related">{searchTerm}</span>;
+        searchTerm = `<span class="LiveSearch-saerch-list-item--eu-exit-related">${searchTerm}</span>`;
       }
 
-      listItems.push(
-        <li className="govuk-!-margin-bottom-4 LiveSearch-saerch-list-item" key={i}>
-          {searchTerm}
-        </li>
-      );
+      listItems.push(searchTerm);
     });
 
     return listItems;
+  }
+
+  initTyped(formattedResults = []) {
+    var count = 0;
+    var typeit = new TypeIt(".LiveSeach-search-list-scroller", {
+      strings: formattedResults,
+      speed: 50,
+      waitUntilVisible: true,
+      beforeString: () => {
+        if (count > 20 && typeit && typeit.instances[0]) {
+          document.querySelector((`[data-typeit-id="${typeit.instances[0].id}"] .ti-container`)).innerHTML = '';
+          count = 0;
+        }
+        count++;
+      }
+    }).go();
   }
 
   render() {
@@ -118,11 +133,8 @@ class LiveSearch extends Component {
       <div className="LiveSearch">
         <h2 className="govuk-heading-l">Live searches</h2>
         <div className="LiveSearch-search-list">
-          <marquee direction="down" className="LiveSeach-search-list-scroller" scrolldelay="0">
-            <ul className="govuk-list">
-              {this.state.results}
-            </ul>
-          </marquee>
+          <div className="LiveSeach-search-list-scroller">
+          </div>
         </div>
       </div>
     );

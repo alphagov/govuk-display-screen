@@ -8,4 +8,9 @@
     @include govuk-font(24, $weight: bold);
     color: govuk-colour('green');
   }
+
+  .typed-cursor {
+    @include govuk-font(24, $weight: bold);
+  }
+
 }
