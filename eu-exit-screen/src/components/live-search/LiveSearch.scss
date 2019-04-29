@@ -3,10 +3,10 @@
 .LiveSearch {
   .LiveSeach-search-list-scroller {
     max-height: 100vh;
+    @include govuk-font(24);
   }
   .LiveSearch-saerch-list-item--eu-exit-related {
     @include govuk-font(24, $weight: bold);
-    color: govuk-colour('green');
   }
 
   .typed-cursor {

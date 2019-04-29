@@ -103,7 +103,7 @@ class LiveSearch extends Component {
       }
 
       if(new RegExp(this.state.euWordHighlightList.join("|")).test(searchTerm.toLowerCase())) {
-        searchTerm = `<span class="LiveSearch-saerch-list-item--eu-exit-related">${searchTerm}</span>`;
+        searchTerm = `<span class="LiveSearch-saerch-list-item--eu-exit-related govuk-tag govuk-phase-banner__content__tag">${searchTerm}</span>`;
       }
 
       listItems.push(searchTerm);
