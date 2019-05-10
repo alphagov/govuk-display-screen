@@ -15,7 +15,7 @@
         + "ids=ga:"+ profileId +"&"
         + "metrics=ga:activeVisitors&"
         + "dimensions=ga:pageTitle,ga:pagePath&"
-        + "filters="+ encodeURIComponent("ga:pagePath==/search") +"&"
+        + "filters="+ encodeURIComponent("ga:pagePath==/search/all") +"&"
         + "sort=-ga:activeVisitors&"
         + "max-results=10000";
     },
