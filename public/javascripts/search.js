@@ -24,7 +24,7 @@
       if(term.indexOf('@') > -1){
         return false;
       }
-      // Nothing that is just a numeber
+      // Nothing that is just a number
       if(term.match(/^[0-9\s]+$/)){
         return false;
       }
