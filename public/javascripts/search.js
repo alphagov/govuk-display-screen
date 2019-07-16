@@ -24,6 +24,10 @@
       if(term.indexOf('@') > -1){
         return false;
       }
+       // Nothing that looks like a Smokey test
+      if(term.indexOf('<script>') > -1){
+        return false;
+      }
       // Nothing that is just a number
       if(term.match(/^[0-9\s]+$/)){
         return false;
