@@ -101,18 +101,23 @@
     displayResults: function(){
       var term = search.newTerms.pop();
       if(term){
-        search.$el.prepend('<li>'+$('<div>').text(term).html()+'</li>');
-        search.$el.css('margin-top',-search.$el.find('li').first().outerHeight(true)).animate({'margin-top':0},
-        function(){
-          search.$el.find('li:gt(20)').remove();
-          root.setTimeout(search.displayResults, (search.nextRefresh - Date.now())/search.newTerms.length);
-        })
+        var updateElement = false;
+        updateElement = search.updateElement(term);
+        updateElement.prepend('<li>'+$('<div>').text(term).html()+'</li>');
+        updateElement.css('margin-top',-search.$el.find('li').first().outerHeight(true)).animate({'margin-top':0},
+          function(){
+            search.$el.find('li:gt(20)').remove();
+            root.setTimeout(search.displayResults, (search.nextRefresh - Date.now())/search.newTerms.length);
+          })
       } else {
         root.setTimeout(search.displayResults, 5e3);
       }
     },
     init: function(){
       search.$el = $('#search');
+      if($('#brexit-search').length) {
+        search.initBrexit();
+      }
 
       search.reload();
       search.displayResults();
@@ -123,6 +128,25 @@
 
       search.nextRefresh = Date.now() + 60e3;
       $.ajax({ dataType: 'json', url: endpoint, success: search.parseResponse});
+    },
+    updateElement: function() {
+      return(search.$el);
+    },
+    updateBrexitElement: function(term) {
+      if(search.brexitTerm(term)){
+        return(search.$bel);
+      }
+      return(search.$el);
+    },
+    initBrexit: function() {
+      search.$bel = $('#brexit-search');
+      search.updateElement = search.updateBrexitElement;
+    },
+    brexitTerm: function(term){
+      if(term.toLowerCase().match(/eea|e111|\ ehic|deal|withdrawal agreement|no-deal|article 50|brexit|\ eu|eu\ |remain|citizenship|european|settlement|abroad|settled|leave to remain/)){
+        return true;
+      }
+      return false;
     }
   };
 
