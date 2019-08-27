@@ -47,6 +47,8 @@ body {
   width: 33.33%;
   float: left;
   overflow: hidden; }
+  .half.box {
+    width: 50%; }
   .tall .box {
     width: 50%;
     height: 33.33%; }
