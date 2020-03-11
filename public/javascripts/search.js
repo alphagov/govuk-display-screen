@@ -119,6 +119,10 @@
         search.initBrexit();
       }
 
+      if($('#corona-search').length) {
+        search.initCorona();
+      }
+
       search.reload();
       search.displayResults();
       window.setInterval(search.reload, 60e3);
@@ -147,7 +151,23 @@
         return true;
       }
       return false;
-    }
+    },
+    initCorona: function() {
+      search.$coronal_el = $('#corona-search');
+      search.updateElement = search.updateCoronaElement;
+    },
+    coronaTerm: function(term){
+      if(term.toLowerCase().match(/corona|wash|hands|covid|COVID-19|COVID19|virus|ssp|sick/)){
+        return true;
+      }
+      return false;
+    },
+    updateCoronaElement: function(term) {
+      if(search.coronaTerm(term)){
+        return(search.$coronal_el);
+      }
+      return(search.$el);
+    },
   };
 
   root.matrix.search = search;

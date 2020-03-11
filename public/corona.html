@@ -1,0 +1,92 @@
+<!doctype html>
+
+<title>Data Screen</title>
+<link rel="stylesheet" href="./stylesheets/base.css">
+<link href="https://assets.digital.cabinet-office.gov.uk/static/fonts-607c54f71c7c1f98257595cedaa13a34.css" media="all" rel="stylesheet" type="text/css">
+
+<div class="top-bar">
+  <div class="inner">
+    <img src="https://assets.publishing.service.gov.uk/static/images/gov.uk_logotype_crown-ea874a79e09423d63420aff44f016fd0b92dc6dec0cc2668d63b150c8669875e.png" width="35" height="31" alt=""> GOV.UK
+  </div>
+</div>
+<div class="small-box traffic">
+  <div id="traffic" class="count">
+    <div class="box-inner">
+      <h1 id="traffic-count"></h1>
+      <p>People currently on GOV.UK</p>
+    </div>
+  </div>
+  <div class="graph box-in">
+    <div id="traffic-count-graph" class="box-inner">
+    </div>
+  </div>
+</div>
+
+<div class="box half searches"><div class="box-inner">
+  <h1>Live searches on GOV.UK:</h1>
+  <ul id="search"></ul>
+</div></div>
+
+<div class="box half searches"><div class="box-inner">
+  <h1>Live Corona searches on GOV.UK:</h1>
+  <ul id="corona-search"></ul>
+</div></div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="javascripts/vendor/mustache.js"></script>
+<script src="javascripts/vendor/pretty.js"></script>
+
+<script src="javascripts/template.js"></script>
+<script src="javascripts/sparkline.js"></script>
+<script src="javascripts/search.js"></script>
+<script src="javascripts/traffic.js"></script>
+<script src="javascripts/content.js"></script>
+<script src="javascripts/inside-gov.js"></script>
+
+<script src="javascripts/manager.js"></script>
+<script>
+  if(typeof window.matrix === 'undefined'){ window.matrix = {}; }
+
+  matrix.settings = {
+    authServer: '/token',
+    profileId: '67465768'
+  };
+
+  $(function(){
+   matrix.manager.init();
+  });
+</script>
+<script type="text/mustache" id="select-options">
+  <option value="">Select {{object}}</option>
+  {{#options}}
+    <option value="{{id}}">{{name}}</option>
+  {{/options}}
+</script>
+<script type="text/mustache" id="content-results">
+  {{#pages}}
+    <li>
+      {{ title }}
+      <em>
+        visits: {{displayHits}}
+        <span class="triangle">&#x25b2;</span>&nbsp;<span class="percent">{{percentageUp}}</span>
+      </em>
+    </li>
+  {{/pages}}
+</script>
+<script type="text/mustache" id="inside-gov-posts">
+  {{#posts}}
+    <li>{{ title }}<em>{{type}} - <span title="{{published}}">{{published}}</span></em></li>
+  {{/posts}}
+</script>
+<script type="text/mustache" id="tweets">
+  {{#tweets}}
+    <li class="tweet">
+      <img src="{{img}}">
+      <div class="text">
+        <p class="user"><strong>{{from}}</strong> @{{handle}}</p>
+        <p>{{text}} - <span title="{{posted}}">{{posted}}</span></p>
+      </div>
+    </li>
+  {{/tweets}}
+</script>
