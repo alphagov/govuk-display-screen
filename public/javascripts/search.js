@@ -33,7 +33,7 @@
         return false;
       }
       // Nothing that is like a NI number
-      if(term.match(/^[A-Za-z]{2}\s+?[0-9]{2}\s+?[0-9]{2}\s+?[0-9]{2}\s+?[A-Za-z]$/)){
+      if(term.match(/^[A-Za-z]{2}\s?[0-9]{2}\s?[0-9]{2}\s?[0-9]{2}\s?[A-Za-z]$/)){
         return false;
       }
       // No 503 requests
