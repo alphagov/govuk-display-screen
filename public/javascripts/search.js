@@ -157,7 +157,7 @@
       search.updateElement = search.updateCoronaElement;
     },
     coronaTerm: function(term){
-      if(term.toLowerCase().match(/corona|wash|hands|covid|COVID-19|COVID19|virus|ssp\ |sick|self.isolation/)){
+      if(term.toLowerCase().match(/corona|wash|hands|covid|COVID-19|COVID19|virus|ssp\ |sick|self.isolation|isolation|closures/)){
         return true;
       }
       return false;
