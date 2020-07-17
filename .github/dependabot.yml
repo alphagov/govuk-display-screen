@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: bundler
+    directory: /
+    schedule:
+      interval: daily
+    allow:
+      # Framework gems
+      - dependency-name: activesupport
+        dependency-type: direct
+      - dependency-name: rack-cache
+        dependency-type: direct
+      - dependency-name: sinatra
+        dependency-type: direct
