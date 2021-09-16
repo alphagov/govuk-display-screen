@@ -42,6 +42,20 @@ body {
       line-height: inherit;
       border: none; }
 
+.double-box {
+  height: calc(100% - 210px);
+  width: 66.66%;
+  float: left;
+  overflow: hidden; }
+  .half.box {
+    width: 50%; }
+  .tall .box {
+    width: 50%;
+    height: 33.33%; }
+    .tall .box.recent {
+      width: 100%;
+      height: 40%; }
+
 .box {
   height: calc(100% - 210px);
   width: 33.33%;
