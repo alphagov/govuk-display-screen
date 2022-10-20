@@ -12,7 +12,28 @@ class Content
   end
 
   def get_content
-     ["WEEK ONE", week_one_responses, "WEEK TWO", week_two_responses]
+     #["WEEK ONE", week_one_responses, "WEEK TWO", week_two_responses]
+      results = []
+      week_one_responses.each do |week_one|
+        match = week_two_responses.select {|n| n[:page_path] == week_one[:page_path] && n[:page_title] == week_one[:page_title]}
+        unless match[0].nil?
+          results << percentage_change(week_one, match[0]) 
+        end  
+      end
+     results
+  end
+
+  def percentage_change(week_one_hits, week_two_hits)
+    numerator = week_two_hits[:page_views].to_f - week_one_hits[:page_views].to_f
+    denominator = week_one_hits[:page_views].to_f
+
+    percent_change = (numerator / denominator) * 100
+
+    {
+      page_title: week_two_hits[:page_title],
+      page_views: week_two_hits[:page_views].to_f,
+      percent_change: percent_change
+    }
   end
 
   def analytics_reports(date_start, date_end)
@@ -24,7 +45,7 @@ class Content
   def week_one_responses
     week_one_request = service.batch_get_reports(week_one)
     week_one_response = week_one_request.reports.first.to_h
-    # week_one_response
+  
     page_data = []
         week_one_response[:data][:rows].each do |row|
         row_data = {
@@ -77,7 +98,7 @@ class Content
       metrics: [metric],
       dimensions: [dimension_path, dimension_title],
       filters: ["pagePath!~^(/$|/(.*-finished$|\\?backtoPage|transformation|service-manual|performance|government|search|done|print|help).*);ga:pageTitle!~(3[0-9]{2} |4[0-9]{2} |5[0-9]{2} |An error has occurred)"],
-      page_size: "2000"
+      page_size: "200"
     )
   end
 
