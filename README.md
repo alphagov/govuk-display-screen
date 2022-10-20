@@ -22,6 +22,9 @@ You can create the client id and client secret using the [Google developer
 console][1]. You need to generate the refresh token, there is a [short Ruby
 script to create one for you][2].
 
+Or, you can [obtain these values from Heroku][3]. For this approach you will need
+to log into Heroku using the 2nd line credentials held in [govuk-secrets][4].
+
 Once you have them you can start the server running:
 
 ```
@@ -33,6 +36,8 @@ You can then browse to the server in your browser.
 
 [1]: https://developer.google.com/console
 [2]: https://gist.github.com/edds/9363713
+[3]: https://devcenter.heroku.com/articles/config-vars
+[4]: https://github.com/alphagov/govuk-secrets/tree/main/pass#usage
 
 # Licence
 
