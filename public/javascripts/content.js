@@ -9,27 +9,20 @@
     $el: false,
 
     endpoint: function(){
-      return "https://www.performance.service.gov.uk/data/govuk/trending?limit=15&sort_by=percent_change:descending";
+      return "/get-content";
     },
     parseResponse: function(data){
-      var i, _i, title;
-
       content.pages = [];
-      for(i=0,_i=data.data.length; i<_i; i++){
-        if(data.data[i].pageTitle.indexOf(' - ') > -1){
-          title = data.data[i].pageTitle.split(' - ').slice(0,-1).join(' - ');
-        } else {
-          title = data.data[i].pageTitle.split(' | ').slice(0,-1).join(' - ');
-        }
-        content.pages.push({
-          title: title,
-          displayHits: root.matrix.numberWithCommas(data.data[i].week2),
-          percentageUp: root.matrix.numberWithCommas(Math.round(data.data[i].percent_change)) + "%"
+      for (let i = 0; i < data.length; i++) {
+        content.pages.push ({
+          title: data[i]["page_title"],
+          displayHits: data[i]["page_views"],
+          percentageUp: data[i]["percent_change"]
         });
       }
-
+      
       content.displayResults();
-    },
+    },  
     displayResults: function(){
       matrix.template(content.$el, 'content-results', { pages: content.pages.slice(0,10) });
     },
@@ -37,7 +30,7 @@
       content.$el = $('#content');
 
       content.reload();
-      window.setInterval(content.reload, 60e3 * 60 * 3); // refresh every 3 hours
+      window.setInterval(content.reload, 5000);
     },
     reload: function(){
       var endpoint = content.endpoint();
