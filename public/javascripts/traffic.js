@@ -9,16 +9,16 @@
     startDate: false,
 
     endpoint: function(offset){
-      var date = new Date(traffic.startDate),
-          start, end;
+      // var date = new Date(traffic.startDate),
+      //     start, end;
 
-      date.setDate(date.getDate() - offset);
-      end = date.toPerformanceString();
-      date.setDate(date.getDate() - 1);
-      start = date.toPerformanceString();
-
-      return "https://www.performance.service.gov.uk/data/government/realtime?sort_by=_timestamp%3Adescending"
-            +"&start_at="+ start +"&end_at="+ end;
+      // date.setDate(date.getDate() - offset);
+      // end = date.toPerformanceString();
+      // date.setDate(date.getDate() - 1);
+      // start = date.toPerformanceString();
+      return "/get-content"
+      // return "https://www.performance.service.gov.uk/data/government/realtime?sort_by=_timestamp%3Adescending"
+      //       +"&start_at="+ start +"&end_at="+ end;
     },
     pointsToArray: function(data){
       var i, _i,
@@ -104,13 +104,15 @@
       traffic.sparkline.update(counts, trend, "Traffic over the past 24 hours, with trend of the same period for the past 4 weeks");
     },
     init: function(){
+      console.log('traffic')
       traffic.$el = $('#traffic-count');
       traffic.$graphEl = $('#traffic-count-graph');
 
       traffic.reload();
-      window.setInterval(traffic.reload, 20e3);
+      window.setInterval(traffic.reload, 30);
     },
     reload: function(){
+      // console.log('traffic')
       traffic.startDate = new Date();
       $.when(
         $.ajax({ dataType: 'json', url: traffic.endpoint(0) }),

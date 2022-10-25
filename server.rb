@@ -57,10 +57,10 @@ end
 
 get '/get-content' do
    content = Content.new()
-   @get_content = content.get_content
-   erb :get_content, locals: { 
-    my_content: @get_content,
-  }
+   content.get_content.to_json
+  #  erb :get_content, locals: { 
+  #   my_content: @get_content,
+  # }
 end
 
 def get_token
