@@ -6,6 +6,7 @@ require 'net/http'
 require 'net/https'
 require 'active_support'
 require 'active_support/core_ext/hash'
+require 'dotenv/load'
 
 use Rack::Cache
 set :public_folder, 'public'

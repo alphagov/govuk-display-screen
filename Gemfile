@@ -7,4 +7,5 @@ gem 'json'
 gem 'rack-cache'
 gem 'sass'
 gem 'sinatra'
+gem "dotenv"
 
