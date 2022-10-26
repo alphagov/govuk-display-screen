@@ -17,7 +17,6 @@
         content.pages.push ({
           title: data[i]["page_title"],
           displayHits: data[i]["page_views"],
-          percentageUp: data[i]["percent_change"]
         });
       }
       

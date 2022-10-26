@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'json'
-require 'rack-cache'
+# require 'rack-cache'
 require 'net/http'
 require 'net/https'
 require 'active_support'
@@ -9,7 +9,7 @@ require 'active_support/core_ext/hash'
 require 'dotenv/load'
 require_relative 'content'
 
-use Rack::Cache
+# use Rack::Cache
 set :public_folder, 'public'
 set :bind, '0.0.0.0'
 set :protection, :except => :frame_options
