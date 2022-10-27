@@ -11,6 +11,8 @@ GEM
     concurrent-ruby (1.1.10)
     declarative (0.0.20)
     dotenv (2.8.1)
+    faker (2.23.0)
+      i18n (>= 1.8.11, < 2)
     faraday (2.5.2)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
@@ -101,6 +103,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   dotenv
+  faker
   google-api-client
   googleauth
   json
@@ -112,4 +115,4 @@ RUBY VERSION
    ruby 2.7.6
 
 BUNDLED WITH
-   1.16.2
+   1.17.2

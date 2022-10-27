@@ -16,7 +16,7 @@
       // end = date.toPerformanceString();
       // date.setDate(date.getDate() - 1);
       // start = date.toPerformanceString();
-      return "/get-content"
+      return "/get-traffic"
       // return "https://www.performance.service.gov.uk/data/government/realtime?sort_by=_timestamp%3Adescending"
       //       +"&start_at="+ start +"&end_at="+ end;
     },
@@ -86,12 +86,13 @@
       return trend;
     },
     parseResponse: function(data, past1, past2, past3){
-      var counts = [],
-          i, _i,
-          trend = traffic.parseTrendline([past1[0].data, past2[0].data, past3[0].data]);
-
-      traffic.$el.html('<h1>' + root.matrix.numberWithCommas(data[0].data[0].unique_visitors) + '</h1>');
-      counts = traffic.pointsToArray(data[0].data);
+      // var counts = [],
+      //     i, _i,
+      //     trend = traffic.parseTrendline([past1[0].data, past2[0].data, past3[0].data]);
+       traffic.$el.html('<h1>' + root.matrix.numberWithCommas(data) + '</h1>');
+      // traffic.$el.html('<h1>' + root.matrix.numberWithCommas(data[0].data[0].unique_visitors) + '</h1>');
+      var counts = traffic.pointsToArray(data[0].data);
+      var trend = traffic.parseTrendline(data -100, data -200, data -300);
       if(typeof traffic.sparkline === 'undefined'){
         traffic.sparkline = root.matrix.sparklineGraph('#traffic-count-graph',
               { data: counts,
@@ -109,16 +110,13 @@
       traffic.$graphEl = $('#traffic-count-graph');
 
       traffic.reload();
-      window.setInterval(traffic.reload, 30);
+      window.setInterval(traffic.reload, 30000);
     },
     reload: function(){
       // console.log('traffic')
       traffic.startDate = new Date();
       $.when(
-        $.ajax({ dataType: 'json', url: traffic.endpoint(0) }),
-        $.ajax({ dataType: 'json', url: traffic.endpoint(7) }),
-        $.ajax({ dataType: 'json', url: traffic.endpoint(14) }),
-        $.ajax( { dataType: 'json', url: traffic.endpoint(21) })
+        $.ajax({ dataType: 'json', url: traffic.endpoint(0) })  
       ).then(traffic.parseResponse);
     }
   };

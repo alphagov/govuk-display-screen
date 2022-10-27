@@ -17,8 +17,9 @@
     </div>
   </div>
   <div class="graph box-in">
-    <div id="traffic-count-graph" class="box-inner">
-    </div>
+    <canvas id="traffic-count-graph" width="200" height="27"></canvas>
+    <!-- <div id="traffic-count-graph" class="box-inner">
+    </div> -->
   </div>
 </div>
 
@@ -41,6 +42,7 @@
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="javascripts/vendor/mustache.js"></script>
 <script src="javascripts/vendor/pretty.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
 <script src="javascripts/template.js"></script>
 <script src="javascripts/sparkline.js"></script>
@@ -60,7 +62,35 @@
 
   $(function(){
    matrix.manager.init();
-   content.init();
+
+    const labels = ["4pm","5pm","6pm","7pm","8pm","9pm","10pm","11pm","12am","1am", "2am","3am", "4am","5am", "6am","7am", "8am", "9am","10am","11am","12pm", "1pm", "2pm", "3pm"]
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'Active Users',
+        data: [65, 59, 80, 81, 56, 55, 30, 59, 80, 81, 56, 55, 40, 59, 80, 81, 56, 55, 40, 59, 80, 81, 56, 55],
+        backgroundColor: 'rgba(255, 255, 255)'
+      }]
+    };
+
+    var myChart = new Chart("traffic-count-graph", {
+      type: "line",
+      data: data,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        plugins: {
+          legend: {
+            title: {
+              display: false
+            }
+          }
+        } 
+      },
+    });   
   });
 </script>
 <script type="text/mustache" id="select-options">

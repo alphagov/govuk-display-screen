@@ -1,15 +1,15 @@
 require 'rubygems'
 require 'sinatra'
 require 'json'
-require 'rack-cache'
 require 'net/http'
 require 'net/https'
 require 'active_support'
 require 'active_support/core_ext/hash'
 require 'dotenv/load'
+require 'faker'
 require_relative 'content'
+require_relative 'traffic'
 
-use Rack::Cache
 set :public_folder, 'public'
 set :bind, '0.0.0.0'
 set :protection, :except => :frame_options
@@ -61,6 +61,11 @@ get '/get-content' do
   #  erb :get_content, locals: { 
   #   my_content: @get_content,
   # }
+end
+
+get '/get-traffic' do
+  traffic = Traffic.new()
+  traffic.get_traffic.to_json
 end
 
 def get_token

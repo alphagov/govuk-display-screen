@@ -10,3 +10,4 @@ gem 'sinatra'
 gem "google-api-client"
 gem "googleauth"
 gem "dotenv"
+gem "faker"
