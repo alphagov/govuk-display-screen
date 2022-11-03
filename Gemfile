@@ -7,4 +7,7 @@ gem 'json'
 gem 'rack-cache'
 gem 'sass'
 gem 'sinatra'
+gem "dotenv"
+gem "google-api-client"
+gem "googleauth"
 

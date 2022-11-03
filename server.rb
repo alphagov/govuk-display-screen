@@ -6,6 +6,8 @@ require 'net/http'
 require 'net/https'
 require 'active_support'
 require 'active_support/core_ext/hash'
+require 'dotenv/load'
+require_relative 'content'
 
 use Rack::Cache
 set :public_folder, 'public'
@@ -51,6 +53,13 @@ get '/feed' do
   req = Net::HTTP::Get.new('/government/feed')
   response = http.request(req)
   JSON.generate Hash.from_xml(response.body)
+end
+
+get '/popular-content' do
+  content_type :json
+
+  content = Content.new()
+  content.most_popular_govuk_pages
 end
 
 def get_token
