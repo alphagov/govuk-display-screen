@@ -1,0 +1,28 @@
+{
+  "name": "govuk-display-screen",
+  "version": "1.0.0",
+  "description": "Screen to display live data from GOV.UK. Includes number of people on GOV.UK, latest searches, trending and recent content. Not publicly accessible because there's sometimes personal data in the latest searches.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alphagov/govuk-display-screen.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alphagov/govuk-display-screen/issues"
+  },
+  "homepage": "https://github.com/alphagov/govuk-display-screen#readme",
+  "devDependencies": {
+    "sass": "^1.55.0"
+  },
+  "dependencies": {
+    "govuk-frontend": "^4.3.1"
+  }
+}
