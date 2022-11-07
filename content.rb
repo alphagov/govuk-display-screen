@@ -44,7 +44,7 @@ private
       page_data = []
         ga_response[:data][:rows].each do |row|
           row_data = {
-            page_views: row[:metrics][0][:values][0],
+            page_views: format_page_views_with_commas(row[:metrics][0][:values][0]),
             page_path: row[:dimensions][0],
             page_title: row[:dimensions][1]
           }
@@ -52,6 +52,10 @@ private
         end
       page_data
     end
+  end
+
+  def format_page_views_with_commas(page_views)
+    page_views.reverse.chars.each_slice(3).map(&:join).join(',').reverse
   end
 
   def build_google_analytics_query
