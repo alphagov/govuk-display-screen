@@ -11,9 +11,9 @@
       <![endif]-->
   </head>
 
-  <body class="govuk-template__body ">
+  <body class="govuk-template__body" style="padding: 20px">
     <header class="govuk-header " role="banner" data-module="govuk-header">
-      <div class="govuk-header__container govuk-width-container">
+      <div class="govuk-header__container govuk-width-container" style="border-bottom: 10px solid #ffffff">
         <div class="govuk-header__logo">
           <a href="#" class="govuk-header__link govuk-header__link--homepage">
             <span class="govuk-header__logotype">
@@ -38,39 +38,46 @@
     </header>
     
     <main class="govuk-main-wrapper">
-      <div class="govuk-width-container">
-
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-full">
-            <div class="small-box traffic">
-              <div id="traffic" class="count">
-                <div class="box-inner">
-                  <h1 id="traffic-count"></h1>
-                  <h2 class="govuk-heading-m">People Currently on GOV.UK</h2>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-third">
+          <div class="small-box traffic">
+            <div id="traffic" class="count">
+              <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+                <div class="govuk-notification-banner__header">
+                  <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                    People currently on GOV.UK
+                  </h2>
                 </div>
-              </div>
-              <div class="graph box-in">
-                <div id="traffic-count-graph" class="box-inner">
+                <div class="govuk-notification-banner__content">
+                  <p class="govuk-notification-banner__heading">
+                    <div class="box-inner">
+                      <h1 id="traffic-count" style="text-align: center;">983,736,73</h1>
+                    </div>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-    
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-one-third">
-            <h2 class="govuk-heading-m">Live Searches</h2>
-            <ul class="govuk-list" id="search"></ul>
+        <div class="govuk-grid-column-two-thirds">
+          <div class="graph box-in">
+            <canvas id="traffic-count-graph" class="box-inner" width="200" height="30px !important"></canvas>
           </div>
-          <div class="govuk-grid-column-one-third">
-            <h2 class="govuk-heading-m">Most Popular Content</h2>
-            <p class="govuk-body">From last 7 days traffic on GOV.UK</p>
-            <ol class="govuk-list govuk-list--number" id="content"></ol>
-          </div>
-          <div class="govuk-grid-column-one-third">
-            <h2 class="govuk-heading-m">Recent Content</h2>
-            <ul class="govuk-list" id="inside-gov"></ul>
-          </div>
+        </div>
+      </div>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-third">
+          <h2 class="govuk-heading-m">Live Searches</h2>
+          <ul class="govuk-list" id="search"></ul>
+        </div>
+        <div class="govuk-grid-column-one-third">
+          <h2 class="govuk-heading-m">Most Popular Content</h2>
+          <p class="govuk-body">From last 7 days traffic on GOV.UK</p>
+          <ol class="govuk-list govuk-list--number" id="content"></ol>
+        </div>
+        <div class="govuk-grid-column-one-third">
+          <h2 class="govuk-heading-m">Recent Content</h2>
+          <ul class="govuk-list" id="inside-gov"></ul>
         </div>
       </div>
     </main>
@@ -84,6 +91,7 @@
     </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="javascripts/vendor/mustache.js"></script>
     <script src="javascripts/vendor/pretty.js"></script>
 
@@ -105,6 +113,66 @@
 
       $(function () {
         matrix.manager.init();
+        const data = {
+          labels: [
+            '4pm', '5pm', '6pm', '7pm', '8pm', '9pm',
+            '10pm', '11pm', '12am', '1am', '2am', '3am',
+            '4am', '5am', '6am', '7am', '8am', '9am',
+            '10am', '11am', '12pm', '1pm', '2pm', '3pm'
+          ],
+          datasets: [{
+            fill: 'start',
+            data: [
+              53108, 132059, 80522, 16895, 23139, 70141,
+              55738, 43780, 79243, 142180, 222, 312,
+              772, 45529, 84305, 70727, 186019, 184390,
+              192635, 150887, 119393, 138546, 179578, 122210
+            ],
+            backgroundColor: 'rgb(37, 93, 160)',
+            color: 'rgb(243, 242, 241)',
+            borderColor: 'rgb(83, 88, 95)'
+          }]
+        }
+
+        const ctx = document.getElementById('traffic-count-graph').getContext('2d')
+        const chart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: false,
+              ticks: {
+                color: 'rgb(83, 88, 95)'
+              },
+              grid: {
+                color: 'rgba(83, 88, 95, 0.2)'
+              }
+            },
+            x: {
+              ticks: {
+                color: 'rgb(83, 88, 95)'
+              },
+              grid: {
+                color: 'rgba(83, 88, 95, 0.2)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            title: {
+              text: 'People on GOV.UK over the last 24 hours',
+              font: {
+                size: '18'
+              },
+              display: true,
+              color: 'black'
+            }
+          }
+        }
+        })
       });
     </script>
     <script type="text/mustache" id="select-options">
