@@ -24,7 +24,7 @@ class Content
       formatted = []
       rows.each do |row|
         row_data = {
-          page_views: row.dig(:metric_values).first.dig(:value),
+          page_views: format_page_views_with_commas(row.dig(:metric_values).first.dig(:value)),
           page_path: row.dig(:dimension_values).first.dig(:value),
           page_title: row.dig(:dimension_values)[1].dig(:value)
         }
@@ -81,5 +81,9 @@ private
 
   def response_hash
     response.to_h
+  end
+
+  def format_page_views_with_commas(page_views)
+    page_views.reverse.chars.each_slice(3).map(&:join).join(',').reverse
   end
 end
