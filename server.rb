@@ -8,6 +8,7 @@ require 'active_support'
 require 'active_support/core_ext/hash'
 require 'dotenv/load'
 require_relative 'content'
+require_relative 'realtime_traffic'
 
 use Rack::Cache
 set :public_folder, 'public'
@@ -60,6 +61,12 @@ get '/popular-content' do
 
   content = Content.new()
   content.most_popular_govuk_pages
+end
+
+get '/realtime-traffic' do
+  content_type :json
+  traffic = RealtimeTraffic.new
+  traffic.active_users
 end
 
 def get_token

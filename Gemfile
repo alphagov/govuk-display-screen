@@ -9,5 +9,6 @@ gem 'sass'
 gem 'sinatra'
 gem "dotenv"
 gem "google-api-client"
+gem "google-analytics-data-v1beta"
 gem "googleauth"
 
