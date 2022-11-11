@@ -10,4 +10,5 @@ gem 'sinatra'
 gem "dotenv"
 gem "google-api-client"
 gem "googleauth"
+gem "google-analytics-data-v1beta"
 
