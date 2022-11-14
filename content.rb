@@ -1,68 +1,58 @@
-require 'google/apis/analyticsreporting_v4'
+require "google/analytics/data/v1beta"
 require 'date'
 require 'json'
 
 class Content
-  attr_reader :service, :credentials
+  attr_reader :client
   def initialize
-    @service = Google::Apis::AnalyticsreportingV4::AnalyticsReportingService.new
-    @credentials = Google::Auth::ServiceAccountCredentials.make_creds(
-      scope: "https://www.googleapis.com/auth/analytics.readonly"
-    )
-    @service.authorization = @credentials
+    @client = ::Google::Analytics::Data::V1beta::AnalyticsData::Client.new
   end
 
   def most_popular_govuk_pages
-    format_response.to_json
+    rows = response_hash[:rows]
+    formatted = []
+    rows.each do |row|
+      row_data = {
+        page_views: row[:metric_values][0][:value],
+        page_path: row[:dimension_values][0][:value],
+        page_title: row[:dimension_values][1][:value]
+      }
+      formatted << row_data
+    end
+    formatted.to_json  
   end
 
 private
 
-  def google_analytics_request
-    service.batch_get_reports(analytics_reports)
+  def request
+    ::Google::Analytics::Data::V1beta::RunReportRequest.new({
+      property: "properties/330577055",
+      date_ranges: [
+        set_date_range
+      ],
+      dimensions: [set_dimension_path, set_dimension_title],
+      metrics: [set_metric],
+      limit: 10
+    })
   end
 
-  def analytics_reports
-    Google::Apis::AnalyticsreportingV4::GetReportsRequest.new(
-      { report_requests: [build_google_analytics_query] }
+  def set_dimension_path
+    #https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#dimensions
+    Google::Analytics::Data::V1beta::Dimension.new(
+      name: "pagePath"
     )
   end
 
-  def format_response
-    begin
-      ga_response = google_analytics_request.reports.first.to_h
-    rescue Google::Apis::Error => e
-      puts "#{e.message}"
-      page_data = [
-        {
-          page_views: "No data available",
-          page_path: "",
-          page_title: "No data available"
-        }
-      ]
-    else
-      page_data = []
-        ga_response[:data][:rows].each do |row|
-          row_data = {
-            page_views: row[:metrics][0][:values][0],
-            page_path: row[:dimensions][0],
-            page_title: row[:dimensions][1]
-          }
-          page_data << row_data
-        end
-      page_data
-    end
+  def set_dimension_title
+    Google::Analytics::Data::V1beta::Dimension.new(
+      name: "pageTitle"
+    )
   end
 
-  def build_google_analytics_query
-    Google::Apis::AnalyticsreportingV4::ReportRequest.new(
-      view_id: 'ga:53872948',
-      sampling_level: 'LARGE',
-      date_ranges: [set_date_range],
-      metrics: [set_metric],
-      order_bys: [{field_name: 'ga:pageviews', sort_order: 'DESCENDING'}],
-      dimensions: [set_dimension_path, set_dimension_title],
-      page_size: '10'
+  def set_metric
+    #https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#metrics
+    Google::Analytics::Data::V1beta::Metric.new(
+      name: "screenPageViews"
     )
   end
 
@@ -70,27 +60,14 @@ private
     start_date = Date.today - 6
     end_date = Date.today
 
-    Google::Apis::AnalyticsreportingV4::DateRange.new(
-      start_date: start_date.to_s,
-      end_date: end_date.to_s
-    )
+    { start_date: start_date.to_s, end_date: end_date.to_s}
   end
 
-  def set_metric
-    Google::Apis::AnalyticsreportingV4::Metric.new(
-      expression: "ga:pageviews"
-    )
+  def response
+    client.run_report request
   end
 
-  def set_dimension_path
-    Google::Apis::AnalyticsreportingV4::Dimension.new(
-      name: "ga:pagePath"
-    )
-  end
-
-  def set_dimension_title
-    Google::Apis::AnalyticsreportingV4::Dimension.new(
-      name: "ga:pageTitle"
-    )
+  def response_hash
+    response.to_h
   end
 end
