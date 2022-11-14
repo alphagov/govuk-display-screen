@@ -8,15 +8,24 @@ class TrafficReport
   end
 
   def visits_per_hour_past_day
-    rows = response_hash[:rows]
-    formatted = []
-    rows.each do |row|
-      formatted << {
-        hour: format_hour_value(row[:dimension_values][0][:value]),
-        visits: row[:metric_values][0][:value]
-      }
+    begin
+      rows = response_hash[:rows]
+    rescue StandardError => e
+      puts "#{e.message}"
+      {
+        hour: "No data available",
+        visits: "No data available"
+      }.to_json
+    else
+      formatted = []
+      rows.each do |row|
+        formatted << {
+          hour: format_hour_value(row.dig(:dimension_values).first.dig(:value)),
+          visits: row.dig(:metric_values).first.dig(:value)
+        }
+      end
+      formatted.to_json
     end
-    formatted.to_json
   end
 
 private

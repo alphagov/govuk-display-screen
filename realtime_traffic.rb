@@ -8,10 +8,16 @@ class RealtimeTraffic
   end
 
   def active_users
-    formatted_responses = {
-      active_users_30_minutes: response_hash[:rows][0][:metric_values][0][:value]
-    }
-    formatted_responses.to_json
+    begin
+      formatted_responses = {
+        active_users_30_minutes: response_hash.dig(:rows).first.dig(:metric_values).first.dig(:value)
+      }
+    rescue StandardError => e
+      puts "#{e.message}"
+      {active_users_30_minutes: "No data available"}.to_json
+    else
+      formatted_responses.to_json
+    end
   end
 
 private

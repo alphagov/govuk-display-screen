@@ -9,17 +9,29 @@ class Content
   end
 
   def most_popular_govuk_pages
-    rows = response_hash[:rows]
-    formatted = []
-    rows.each do |row|
-      row_data = {
-        page_views: row[:metric_values][0][:value],
-        page_path: row[:dimension_values][0][:value],
-        page_title: row[:dimension_values][1][:value]
-      }
-      formatted << row_data
+    begin
+      rows = response_hash[:rows]
+    rescue StandardError => e
+      puts "#{e.message}"
+      [
+        {
+          page_views: "No data available",
+          page_path: "",
+          page_title: "No data available"
+        }.to_json
+      ]
+    else
+      formatted = []
+      rows.each do |row|
+        row_data = {
+          page_views: row.dig(:metric_values).first.dig(:value),
+          page_path: row.dig(:dimension_values).first.dig(:value),
+          page_title: row.dig(:dimension_values)[1].dig(:value)
+        }
+        formatted << row_data
+      end
+      formatted.to_json
     end
-    formatted.to_json  
   end
 
 private
