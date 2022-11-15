@@ -11,19 +11,19 @@
     endpoint: function(){
       return "/realtime-traffic";
     },
-
+    
     parseResponse: function(data){
       traffic.user_count = data.active_users_30_minutes
       traffic.displayResults() 
     },
     displayResults: function(){
-      matrix.template(traffic.$el, 'traffic-count', {user_count:  root.matrix.numberWithCommas(traffic.user_count)} );
+      traffic.$el.text(root.matrix.numberWithCommas(traffic.user_count))
     },
     init: function(){
       traffic.$el = $('#traffic-count');
 
       traffic.reload();
-      window.setInterval(traffic.reload, 60e3);
+      window.setInterval(traffic.reload, 30e3);
     },
     reload: function(){
       var endpoint = traffic.endpoint();

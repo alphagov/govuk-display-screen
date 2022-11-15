@@ -12,6 +12,7 @@
         $body.addClass('tall');
       }
       matrix.traffic.init();
+      matrix.traffic_report.init();
       matrix.search.init();
       matrix.content.init();
       matrix.insideGov.init();
