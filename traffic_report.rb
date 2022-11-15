@@ -1,34 +1,28 @@
 require "google/analytics/data/v1beta"
-require 'date'
 require 'json'
 
-class Content
+class TrafficReport
   attr_reader :client
   def initialize
     @client = ::Google::Analytics::Data::V1beta::AnalyticsData::Client.new
   end
 
-  def most_popular_govuk_pages
+  def visits_per_hour_past_day
     begin
       rows = response_hash[:rows]
     rescue StandardError => e
       puts "#{e.message}"
-      [
-        {
-          page_views: "No data available",
-          page_path: "",
-          page_title: "No data available"
-        }.to_json
-      ]
+      {
+        hour: "No data available",
+        visits: "No data available"
+      }.to_json
     else
       formatted = []
       rows.each do |row|
-        row_data = {
-          page_views: row.dig(:metric_values).first.dig(:value),
-          page_path: row.dig(:dimension_values).first.dig(:value),
-          page_title: row.dig(:dimension_values)[1].dig(:value)
+        formatted << {
+          hour: format_hour_value(row.dig(:dimension_values).first.dig(:value)),
+          visits: row.dig(:metric_values).first.dig(:value)
         }
-        formatted << row_data
       end
       formatted.to_json
     end
@@ -40,39 +34,41 @@ private
     ::Google::Analytics::Data::V1beta::RunReportRequest.new({
       property: "properties/330577055",
       date_ranges: [
-        set_date_range
+       { start_date: 'yesterday', end_date: 'today'}
       ],
-      dimensions: [set_dimension_path, set_dimension_title],
+      dimensions: [set_dimension],
       metrics: [set_metric],
-      limit: 10
+      order_bys: [set_order]
     })
   end
 
-  def set_dimension_path
+  def set_dimension
     #https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#dimensions
     Google::Analytics::Data::V1beta::Dimension.new(
-      name: "pagePath"
-    )
-  end
-
-  def set_dimension_title
-    Google::Analytics::Data::V1beta::Dimension.new(
-      name: "pageTitle"
+      name: "hour"
     )
   end
 
   def set_metric
     #https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#metrics
     Google::Analytics::Data::V1beta::Metric.new(
-      name: "screenPageViews"
+      name: "activeUsers"
     )
   end
 
-  def set_date_range
-    start_date = Date.today - 6
-    end_date = Date.today
-
-    { start_date: start_date.to_s, end_date: end_date.to_s}
+  def set_order
+    Google::Analytics::Data::V1beta::OrderBy.new(
+      {
+        dimension: Google::Analytics::Data::V1beta::OrderBy::DimensionOrderBy.new(
+          {
+            dimension_name: 'hour',
+            order_type: Google::Analytics::Data::V1beta::OrderBy::DimensionOrderBy::OrderType::NUMERIC
+        
+          }
+        ),
+        desc: true 
+      }
+    )
   end
 
   def response
@@ -81,5 +77,9 @@ private
 
   def response_hash
     response.to_h
+  end
+
+  def format_hour_value(hour_data)
+    hour_data == "(other)" ? "total_visitors_24_hours" : hour_data
   end
 end
