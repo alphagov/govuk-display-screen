@@ -11,9 +11,9 @@
       <![endif]-->
   </head>
 
-  <body class="govuk-template__body" style="padding: 20px">
-    <header class="govuk-header " role="banner" data-module="govuk-header">
-      <div class="govuk-header__container govuk-width-container" style="border-bottom: 10px solid #ffffff">
+  <body class="govuk-template__body">
+    <header class="govuk-header" role="banner" data-module="govuk-header">
+      <div class="govuk-header__container govuk-width-container" style="border-bottom: 10px solid #ffffff; margin-left: 20px;">
         <div class="govuk-header__logo">
           <a href="#" class="govuk-header__link govuk-header__link--homepage">
             <span class="govuk-header__logotype">
@@ -37,7 +37,7 @@
       </div>
     </header>
     
-    <main class="govuk-main-wrapper">
+    <main class="govuk-main-wrapper" style="padding: 20px">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-third">
           <div class="small-box traffic">
@@ -67,16 +67,16 @@
       </div>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-third">
-          <h2 class="govuk-heading-m">Live Searches</h2>
+          <h2 class="govuk-heading-l govuk-!-margin-bottom-7">Live Searches</h2>
           <ul class="govuk-list" id="search"></ul>
         </div>
         <div class="govuk-grid-column-one-third">
-          <h2 class="govuk-heading-m">Most Popular Content</h2>
+          <h2 class="govuk-heading-l">Most Popular Content</h2>
           <p class="govuk-body">From last 7 days traffic on GOV.UK</p>
           <ol class="govuk-list govuk-list--number" id="content"></ol>
         </div>
         <div class="govuk-grid-column-one-third">
-          <h2 class="govuk-heading-m">Recent Content</h2>
+          <h2 class="govuk-heading-l">Recent Content</h2>
           <ul class="govuk-list" id="inside-gov"></ul>
         </div>
       </div>
@@ -123,13 +123,11 @@
       {{/options}}
     </script>
     <script type="text/mustache" id="content-results">
-      <ol>
-        {{#pages}}
-          <li>
-            {{ title }} <p class="govuk-body govuk-!-font-weight-bold">{{displayHits}} visits</p>
-          </li>
-        {{/pages}}
-      </ol>
+      {{#pages}}
+        <li>
+          {{ title }} <p class="govuk-body govuk-!-font-weight-bold">{{displayHits}} visits</p>
+        </li>
+      {{/pages}}
     </script>
     <script type="text/mustache" id="inside-gov-posts">
       {{#posts}}
