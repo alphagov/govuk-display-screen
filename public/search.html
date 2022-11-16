@@ -10,7 +10,6 @@
 </div></div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="javascripts/vendor/mustache.js"></script>
 <script src="javascripts/vendor/pretty.js"></script>
 
@@ -52,14 +51,4 @@
     <li>{{ title }}<em>{{type}} - <span title="{{published}}">{{published}}</span></em></li>
   {{/posts}}
 </script>
-<script type="text/mustache" id="tweets">
-  {{#tweets}}
-    <li class="tweet">
-      <img src="{{img}}">
-      <div class="text">
-        <p class="user"><strong>{{from}}</strong> @{{handle}}</p>
-        <p>{{text}} - <span title="{{posted}}">{{posted}}</span></p>
-      </div>
-    </li>
-  {{/tweets}}
-</script>
+
