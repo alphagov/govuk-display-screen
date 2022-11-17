@@ -115,13 +115,6 @@
     },
     init: function(){
       search.$el = $('#search');
-      if($('#brexit-search').length) {
-        search.initBrexit();
-      }
-
-      if($('#corona-search').length) {
-        search.initCorona();
-      }
 
       search.reload();
       search.displayResults();
@@ -134,38 +127,6 @@
       $.ajax({ dataType: 'json', url: endpoint, success: search.parseResponse});
     },
     updateElement: function() {
-      return(search.$el);
-    },
-    updateBrexitElement: function(term) {
-      if(search.brexitTerm(term)){
-        return(search.$bel);
-      }
-      return(search.$el);
-    },
-    initBrexit: function() {
-      search.$bel = $('#brexit-search');
-      search.updateElement = search.updateBrexitElement;
-    },
-    brexitTerm: function(term){
-      if(term.toLowerCase().match(/eea|e111|\ ehic|deal|withdrawal agreement|no-deal|article 50|brexit|\ eu|eu\ |remain|citizenship|european|settlement|abroad|settled|leave to remain/)){
-        return true;
-      }
-      return false;
-    },
-    initCorona: function() {
-      search.$coronal_el = $('#corona-search');
-      search.updateElement = search.updateCoronaElement;
-    },
-    coronaTerm: function(term){
-      if(term.toLowerCase().match(/corona|wash|hands|covid|COVID-19|COVID19|virus|ssp\ |sick|self.isolation|isolation|closures?|quarantine|key.workers?|essential|vulnerable|shops?|lockdown/)){
-        return true;
-      }
-      return false;
-    },
-    updateCoronaElement: function(term) {
-      if(search.coronaTerm(term)){
-        return(search.$coronal_el);
-      }
       return(search.$el);
     },
   };

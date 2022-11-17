@@ -26,18 +26,6 @@ get '/' do
   File.read(File.join('public', 'index.html'))
 end
 
-get '/search' do
-  File.read(File.join('public', 'search.html'))
-end
-
-get '/brexit' do
-  File.read(File.join('public', 'brexit.html'))
-end
-
-get '/corona' do
-  File.read(File.join('public', 'corona.html'))
-end
-
 get '/realtime' do
   cache_control :public, :max_age => 20
   query = { :access_token => get_token }.merge(params)
