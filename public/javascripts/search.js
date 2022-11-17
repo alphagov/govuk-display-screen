@@ -115,9 +115,6 @@
     },
     init: function(){
       search.$el = $('#search');
-      if($('#brexit-search').length) {
-        search.initBrexit();
-      }
 
       search.reload();
       search.displayResults();
@@ -131,22 +128,6 @@
     },
     updateElement: function() {
       return(search.$el);
-    },
-    updateBrexitElement: function(term) {
-      if(search.brexitTerm(term)){
-        return(search.$bel);
-      }
-      return(search.$el);
-    },
-    initBrexit: function() {
-      search.$bel = $('#brexit-search');
-      search.updateElement = search.updateBrexitElement;
-    },
-    brexitTerm: function(term){
-      if(term.toLowerCase().match(/eea|e111|\ ehic|deal|withdrawal agreement|no-deal|article 50|brexit|\ eu|eu\ |remain|citizenship|european|settlement|abroad|settled|leave to remain/)){
-        return true;
-      }
-      return false;
     },
   };
 

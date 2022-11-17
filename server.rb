@@ -30,10 +30,6 @@ get '/search' do
   File.read(File.join('public', 'search.html'))
 end
 
-get '/brexit' do
-  File.read(File.join('public', 'brexit.html'))
-end
-
 get '/realtime' do
   cache_control :public, :max_age => 20
   query = { :access_token => get_token }.merge(params)
