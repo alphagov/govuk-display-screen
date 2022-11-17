@@ -39,6 +39,12 @@ You can then browse to the server in your browser.
 [3]: https://devcenter.heroku.com/articles/config-vars
 [4]: https://github.com/alphagov/govuk-secrets/tree/main/pass#usage
 
+## Custom search result pages
+
+/corona and /brexit pages previously displayed live search results that matched coronavirus and brexit related terms.
+They were removed due to lack of use. [Use this PR](https://github.com/alphagov/govuk-display-screen/pull/74)
+as an example if bespoke search result pages need to be created in future.
+
 # Licence
 
 Copyright (C) 2013 Edd Sowden
