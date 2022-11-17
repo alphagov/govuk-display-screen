@@ -23,18 +23,29 @@ class Content
     else
       formatted = []
       rows.each do |row|
-        row_data = {
-          page_views: format_page_views_with_commas(row.dig(:metric_values).first.dig(:value)),
-          page_path: row.dig(:dimension_values).first.dig(:value),
-          page_title: row.dig(:dimension_values)[1].dig(:value)
-        }
-        formatted << row_data
+        page_title = row.dig(:dimension_values)[1].dig(:value)
+        unless other_result(page_title)
+          row_data = {
+            page_views: format_page_views_with_commas(row.dig(:metric_values).first.dig(:value)),
+            page_path: row.dig(:dimension_values).first.dig(:value),
+            page_title: page_title
+          }
+          formatted << row_data
+        end
       end
       formatted.to_json
     end
   end
 
 private
+
+  def other_result(page_title)
+    #Sometimes the API returns '(other)' results which skew the data:
+    #https://support.google.com/analytics/answer/9309767#zippy=%2Cin-this-article.
+    #It doesn't look like we can eliminate them using the API query itself.
+    #There are only max 10 results, so a Ruby check has been added to eliminate (other) results.
+    page_title == "(other)"
+  end
 
   def request
     ::Google::Analytics::Data::V1beta::RunReportRequest.new({
