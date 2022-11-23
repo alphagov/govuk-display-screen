@@ -36,7 +36,7 @@
       const data = []
       const labels = []
       for( var i = 0; i < traffic_report.visits_per_hour.length; i++ ){
-        if( traffic_report.visits_per_hour[i].hour != "total_visitors_24_hours"){
+        if( traffic_report.visits_per_hour[i].hour != "(other)"){
           labels.push(traffic_report.visits_per_hour[i].hour)
           data.push(traffic_report.visits_per_hour[i].visits)
          }

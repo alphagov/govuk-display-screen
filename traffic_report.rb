@@ -20,7 +20,7 @@ class TrafficReport
       formatted = []
       rows.each do |row|
         formatted << {
-          hour: format_hour_value(row.dig(:dimension_values).first.dig(:value)),
+          hour: row.dig(:dimension_values).first.dig(:value),
           visits: row.dig(:metric_values).first.dig(:value)
         }
       end
@@ -77,9 +77,5 @@ private
 
   def response_hash
     response.to_h
-  end
-
-  def format_hour_value(hour_data)
-    hour_data == "(other)" ? "total_visitors_24_hours" : hour_data
   end
 end
