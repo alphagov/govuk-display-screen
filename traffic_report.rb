@@ -20,7 +20,7 @@ class TrafficReport
       formatted = []
       rows.each do |row|
         formatted << {
-          hour: row.dig(:dimension_values).first.dig(:value),
+          hour: format_date_hour(row.dig(:dimension_values).first.dig(:value)),
           visits: row.dig(:metric_values).first.dig(:value)
         }
       end
@@ -47,7 +47,7 @@ private
   def set_dimension
     #https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#dimensions
     Google::Analytics::Data::V1beta::Dimension.new(
-      name: "hour"
+      name: "dateHour"
     )
   end
 
@@ -63,7 +63,7 @@ private
       {
         dimension: Google::Analytics::Data::V1beta::OrderBy::DimensionOrderBy.new(
           {
-            dimension_name: 'hour',
+            dimension_name: 'dateHour',
             order_type: Google::Analytics::Data::V1beta::OrderBy::DimensionOrderBy::OrderType::NUMERIC
         
           }
@@ -79,5 +79,10 @@ private
 
   def response_hash
     response.to_h
+  end
+
+  def format_date_hour(date_hour)
+     parsed_date_hour = DateTime.parse(date_hour)
+     parsed_date_hour.strftime('%H:%M')
   end
 end
