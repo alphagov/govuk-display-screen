@@ -54,7 +54,7 @@ private
   def set_metric
     #https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#metrics
     Google::Analytics::Data::V1beta::Metric.new(
-      name: "activeUsers"
+      name: "totalUsers"
     )
   end
 
