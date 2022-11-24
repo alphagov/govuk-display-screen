@@ -38,7 +38,9 @@ private
       ],
       dimensions: [set_dimension],
       metrics: [set_metric],
-      order_bys: [set_order]
+      order_bys: [set_order],
+      limit: 25,
+      offset: 0
     })
   end
 
