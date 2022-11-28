@@ -24,7 +24,7 @@
       const ctx = document.getElementById('traffic-count-graph').getContext('2d')
       traffic_report.$el = $(ctx);
       traffic_report.reload();
-      window.setInterval(traffic_report.reload, 60e3 * 60 * 24);
+      window.setInterval(traffic_report.reload, 6000);
     },
     reload: function(){
       var endpoint = traffic_report.endpoint();
@@ -106,7 +106,7 @@
         } else {
           num = orderedHours[i]
         }
-        formattedHours.push(num + ":00")
+        formattedHours.push(num)
       }
       return formattedHours
     }
