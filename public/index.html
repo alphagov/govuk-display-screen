@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <!--[if !IE 8]><!-->
     <link rel="stylesheet" href="/stylesheets/govuk-frontend-4.3.1.min.css">
+    <link rel="stylesheet" href="/stylesheets/govuk-custom-dashboard.css">
     <!--<![endif]-->
     <!--[if IE 8]>
         <link rel="stylesheet" href="/stylesheets/govuk-frontend-ie8-4.3.1.min.css">
@@ -17,8 +18,8 @@
   </head>
 
   <body class="govuk-template__body">
-    <header class="govuk-header" role="banner" style="border-bottom: 10px solid #0b0c0c" data-module="govuk-header">
-      <div class="govuk-header__container govuk-width-container" style="border-bottom: 10px solid #0b0c0c; margin-left: 20px;">
+    <header class="govuk-header dashboard-banner" role="banner" data-module="govuk-header">
+      <div class="govuk-header__container govuk-width-container dashboard-banner-inner">
         <div class="govuk-header__logo">
           <a href="#" class="govuk-header__link govuk-header__link--homepage">
             <span class="govuk-header__logotype">
@@ -42,12 +43,12 @@
       </div>
     </header>
     
-    <main class="govuk-main-wrapper" style="padding: 20px; background-color: #263135;">
+    <main class="govuk-main-wrapper dashboard-background">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-third">
           <div class="small-box traffic">
-            <h1 class="govuk-notification-banner__title" id="traffic-count" style="text-align: left; font-size: 72px;"></h1>
-            <h2 class="govuk-notification-banner__title govuk-!-margin-bottom-7" id="govuk-notification-banner-title" style="text-align: left;">
+            <h1 class="govuk-notification-banner__title dashboard-number-count" id="traffic-count"></h1>
+            <h2 class="govuk-notification-banner__title govuk-!-margin-bottom-7" id="govuk-notification-banner-title">
               Users on GOV.UK in the last 30 minutes
             </h2>    
           </div>

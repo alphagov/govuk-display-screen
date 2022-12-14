@@ -1,0 +1,18 @@
+.dashboard-banner {
+    border-bottom: 10px solid #0b0c0c;
+}
+
+.dashboard-banner-inner {
+    border-bottom: 10px solid #0b0c0c; 
+    margin-left: 20px;
+}
+
+.dashboard-background {
+    padding: 20px; 
+    background-color: #263135;
+}
+
+.dashboard-number-count {
+    text-align: left; 
+    font-size: 72px;
+}
