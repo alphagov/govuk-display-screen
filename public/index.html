@@ -2,9 +2,15 @@
 <html lang="en" class="govuk-template ">
   <head>
     <title>Data Screen</title>
+    <style>
+      * {
+        color: #ffffff !important;
+      }
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <!--[if !IE 8]><!-->
     <link rel="stylesheet" href="/stylesheets/govuk-frontend-4.3.1.min.css">
+    <link rel="stylesheet" href="/stylesheets/govuk-custom-dashboard.css">
     <!--<![endif]-->
     <!--[if IE 8]>
         <link rel="stylesheet" href="/stylesheets/govuk-frontend-ie8-4.3.1.min.css">
@@ -12,8 +18,8 @@
   </head>
 
   <body class="govuk-template__body">
-    <header class="govuk-header" role="banner" data-module="govuk-header">
-      <div class="govuk-header__container govuk-width-container" style="border-bottom: 10px solid #ffffff; margin-left: 20px;">
+    <header class="govuk-header dashboard-banner" role="banner" data-module="govuk-header">
+      <div class="govuk-header__container govuk-width-container dashboard-banner-inner">
         <div class="govuk-header__logo">
           <a href="#" class="govuk-header__link govuk-header__link--homepage">
             <span class="govuk-header__logotype">
@@ -37,30 +43,18 @@
       </div>
     </header>
     
-    <main class="govuk-main-wrapper" style="padding: 20px">
+    <main class="govuk-main-wrapper dashboard-background">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-third">
           <div class="small-box traffic">
-            <div id="traffic" class="count">
-              <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-                <div class="govuk-notification-banner__header">
-                  <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title" style="text-align: center;">
-                    Users on GOV.UK in the last 30 minutes
-                  </h2>
-                </div>
-                <div class="govuk-notification-banner__content">
-                  <p class="govuk-notification-banner__heading">
-                    <div class="box-inner">
-                      <h1 id="traffic-count" style="text-align: center;"></h1>
-                    </div>
-                  </p>
-                </div>
-              </div>
-            </div>
+            <h1 class="govuk-notification-banner__title dashboard-number-count" id="traffic-count"></h1>
+            <h2 class="govuk-notification-banner__title govuk-!-margin-bottom-7" id="govuk-notification-banner-title">
+              Users on GOV.UK in the last 30 minutes
+            </h2>    
           </div>
         </div>
       </div>
-      <div class="govuk-grid-row">
+      <div class="govuk-grid-row" >
         <div class="govuk-grid-column-one-third">
           <h2 class="govuk-heading-l govuk-!-margin-bottom-7">Live Searches</h2>
           <ul class="govuk-list" id="search"></ul>
