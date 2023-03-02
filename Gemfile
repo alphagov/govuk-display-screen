@@ -9,4 +9,5 @@ gem 'sass'
 gem 'sinatra'
 gem "dotenv"
 gem "google-analytics-data-v1beta"
+gem 'puma'
 
