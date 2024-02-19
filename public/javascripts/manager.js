@@ -14,7 +14,6 @@
       matrix.traffic.init();
       matrix.search.init();
       matrix.content.init();
-      matrix.insideGov.init();
     },
   };
   root.matrix.manager = manager;
