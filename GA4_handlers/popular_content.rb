@@ -1,7 +1,7 @@
 require 'google-analytics-data-v1beta'
 
 def popular_content
-  client = ::Google::Analytics::Data::V1beta::AnalyticsData::Client.new
+  client = Google::Analytics::Data::V1beta::AnalyticsData::Client.new
 
   start_date = Date.today - 6
   end_date = Date.today
