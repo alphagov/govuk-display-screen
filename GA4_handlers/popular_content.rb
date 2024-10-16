@@ -1,3 +1,5 @@
+require 'google-analytics-data-v1beta'
+
 def popular_content
   client = ::Google::Analytics::Data::V1beta::AnalyticsData::Client.new
 
