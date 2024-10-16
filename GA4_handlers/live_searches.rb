@@ -1,7 +1,7 @@
 require "google/analytics/data/v1beta"
 
 def live_searches 
-  client = Google::Analytics::Data::V1beta::AnalyticsData::Client.new
+  client = ::Google::Analytics::Data::V1beta::AnalyticsData::Client.new
 
   # Define the metric for active users
   metric = Google::Analytics::Data::V1beta::Metric.new(
