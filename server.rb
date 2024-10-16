@@ -7,7 +7,7 @@ require 'net/https'
 require 'active_support'
 require 'active_support/core_ext/hash'
 require 'dotenv/load'
-require 'google-analytics-data-v1beta'
+require "google/analytics/data/v1beta"
 require_relative 'GA4_handlers/active_users'
 require_relative 'GA4_handlers/popular_content'
 require_relative 'GA4_handlers/live_searches'

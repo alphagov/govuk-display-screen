@@ -1,4 +1,4 @@
-require 'google-analytics-data-v1beta'
+require "google/analytics/data/v1beta"
 
 def live_searches 
   client = Google::Analytics::Data::V1beta::AnalyticsData::Client.new
