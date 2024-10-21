@@ -50,3 +50,11 @@ get '/active-users' do
   content_type :json
   active_users
 end
+
+get '/recently-published' do
+  http = Net::HTTP.new('www.gov.uk', 443)
+  http.use_ssl = true
+  req = Net::HTTP::Get.new('/government/feed')
+  response = http.request(req)
+  JSON.generate Hash.from_xml(response.body)
+end
