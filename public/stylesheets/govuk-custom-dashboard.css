@@ -1,3 +1,10 @@
+/* Note: `!important` is used to override default gov.uk css styles */
+
+
+html,body {
+    background-color: #282D30 !important;
+}
+
 .dashboard-banner {
     border-bottom: 10px solid #0b0c0c;
 }
@@ -5,14 +12,47 @@
 .dashboard-banner-inner {
     border-bottom: 10px solid #0b0c0c; 
     margin-left: 20px;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+}
+
+.dashboard-banner-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#slack-channel-link {
+    margin-right: 20px;
+    font-size: 32px;
+}
+.govuk-header__logo{
+    flex: 1;
 }
 
 .dashboard-background {
     padding: 20px; 
-    background-color: #263135;
+    background-color: #282D30;
 }
 
 .dashboard-number-count {
     text-align: left; 
     font-size: 72px;
+}
+
+li {
+    font-size: 24px !important;
+}
+li p {
+    font-size: 24px !important;
+}
+
+h2#govuk-notification-banner-title {
+    font-size: 24px !important;
+}
+.govuk-grid-column-one-third p{
+    font-size: 24px !important;
+}
+
+h2.govuk-heading-l {
+    font-size: 48px;
 }
