@@ -1,44 +1,44 @@
 require "google/analytics/data/v1beta"
 
-def live_searches 
+
+def most_popular_search_terms
+  # Gets the most searched search terms for the last 30min
+  # By selecting the 2000 most popular pages
+  # And filtering out the ones that are not search results
+
   client = ::Google::Analytics::Data::V1beta::AnalyticsData::Client.new
 
-  # Define the metric for active users
   metric = Google::Analytics::Data::V1beta::Metric.new(
     name: "activeUsers"
   )
 
-  # Define the dimension for page path (slug)
   dimension = Google::Analytics::Data::V1beta::Dimension.new(
-    name: "unifiedScreenName"  # This provides the slug only
+    name: "unifiedScreenName"  # This provides the title of the page
   )
 
-  # page_location_dimension = Google::Analytics::Data::V1beta::Dimension.new(
-  #   name: "page_location"  # This provides the slug only
-  # )
-
-  # Prepare the request
   req = {
-    property: "properties/330577055", # Your GA4 property ID
+    property: "properties/330577055",
     metrics: [metric],
-    dimensions: [
-      dimension,
-      # page_location_dimension
-    ],
-    limit: 20
+    dimensions: [dimension],
+    limit: 2000
   }
 
-  # Run the report
   response = client.run_realtime_report(req)
-  result = response.to_h
 
+  data = []
 
-  # Extract the active users data with page path (slug)
-  data = result[:rows].map do |row|
-    {
-      page_slug: row[:dimension_values].first[:value],
-      active_users_count: row[:metric_values].first[:value]
-    }
+  response.rows.each do |row|
+    page_title = row.dimension_values.first.value
+    active_users_count = row.metric_values.first.value.to_i
+
+    if page_title.include?(" - Search - ")
+      search_term = page_title.split(" - Search - ").first
+
+      data << {
+        page_slug: search_term,
+        active_users_count: active_users_count
+      }
+    end
   end
 
   data.to_json

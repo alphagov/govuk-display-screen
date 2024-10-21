@@ -38,7 +38,7 @@ end
 
 get '/live-searches' do
   content_type :json
-  live_searches
+  most_popular_search_terms
 end
 
 get '/popular-content' do
