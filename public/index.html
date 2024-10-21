@@ -50,13 +50,17 @@
         </div>
       </div>
       <div class="govuk-grid-row" >
-        <div class="govuk-grid-column-one-half">
+        <div class="govuk-grid-column-one-third">
           <h2 class="govuk-heading-l govuk-!-margin-bottom-7">Live Searches</h2>
           <ul class="govuk-list" id="search"></ul>
         </div>
         <div class="govuk-grid-column-one-third">
           <h2 class="govuk-heading-l">Popular in the last 7 days</h2>
           <ol class="govuk-list govuk-list--number" id="content"></ol>
+        </div>
+        <div class="govuk-grid-column-one-third">
+          <h2 class="govuk-heading-l">Recently Published</h2>
+          <ul class="govuk-list" id="recently-published"></ul>
         </div>
       </div>
     </main>
@@ -77,6 +81,7 @@
     <script src="javascripts/search.js"></script>
     <script src="javascripts/traffic.js"></script>
     <script src="javascripts/content.js"></script>
+    <script src="javascripts/recently-published.js"></script>
 
     <script src="javascripts/manager.js"></script>
     <script>
@@ -91,20 +96,20 @@
         matrix.manager.init();
       });
     </script>
-    <script type="text/mustache" id="select-options">
+    <script type="text/mustache" id="select-options-template">
       <option value="">Select {{object}}</option>
       {{#options}}
         <option value="{{id}}">{{name}}</option>
       {{/options}}
     </script>
-    <script type="text/mustache" id="content-results">
+    <script type="text/mustache" id="content-results-template">
       {{#pages}}
         <li>
           {{ title }} <p class="govuk-body govuk-!-font-weight-bold">{{displayHits}} visits</p>
         </li>
       {{/pages}}
     </script>
-    <script type="text/mustache" id="inside-gov-posts">
+    <script type="text/mustache" id="recently-published-template">
       {{#posts}}
         <li>{{ title }} - <em>{{type}}</em> <p class="govuk-body govuk-!-font-weight-bold"><span title="{{published}}">{{published}}</span></p> </li>
       {{/posts}}

@@ -22,7 +22,7 @@
       content.displayResults();
     },
     displayResults: function(){
-      matrix.template(content.$el, 'content-results', { pages: content.pages.slice(0,10) });
+      matrix.template(content.$el, 'content-results-template', { pages: content.pages.slice(0,10) });
     },
     init: function(){
       content.$el = $('#content');
