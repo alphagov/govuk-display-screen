@@ -107,7 +107,7 @@
       var term = search.newTerms.pop();
       if(term){
         var updateElement = search.updateElement();
-        updateElement.prepend('<li>'+$('<div>').text(term).html()+'</li>');
+        updateElement.prepend('<li class="govuk-body-l">'+$('<div class="govuk-body-l">').text(term).html()+'</li>');
         updateElement.css('margin-top',-search.$el.find('li').first().outerHeight(true)).animate({'margin-top':0}, function(){
           search.$el.find('li:gt(20)').remove();
           root.setTimeout(search.displayResults, (search.nextRefresh - Date.now()) / search.newTerms.length);

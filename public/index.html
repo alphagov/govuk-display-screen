@@ -34,7 +34,7 @@
             </span>
           </a>
         </div>
-          <a href="https://gds.slack.com/archives/C06E0JUDMUZ" class="govuk-header__link" id="slack-channel-link">#govuk-insights-and-analytics-team</a>
+          <a href="https://gds.slack.com/archives/C06E0JUDMUZ" class="govuk-header__link 	govuk-heading-l govuk-!-margin-bottom-2 govuk-!-margin-top-2 govuk-!-margin-right-4  govuk-!-font-weight-regular">#govuk-insights-and-analytics-team</a>
       </div>
     </header>
 
@@ -42,8 +42,8 @@
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-half">
           <div class="small-box traffic">
-            <h1 class="govuk-notification-banner__title dashboard-number-count" id="traffic-count"></h1>
-            <h2 class="govuk-notification-banner__title govuk-!-margin-bottom-7" id="govuk-notification-banner-title">
+            <h1 class="govuk-notification-banner__title govuk-!-font-size-80" id="traffic-count"></h1>
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-7 ">
               Users on GOV.UK in the last 30 minutes
             </h2>
           </div>
@@ -51,15 +51,15 @@
       </div>
       <div class="govuk-grid-row" >
         <div class="govuk-grid-column-one-third">
-          <h2 class="govuk-heading-l govuk-!-margin-bottom-7">Live Searches</h2>
+          <h2 class="govuk-heading-xl govuk-!-margin-bottom-7">Live Searches</h2>
           <ul class="govuk-list" id="search"></ul>
         </div>
         <div class="govuk-grid-column-one-third">
-          <h2 class="govuk-heading-l">Popular in the last 7 days</h2>
+          <h2 class="govuk-heading-xl">Popular in the last 7 days</h2>
           <ol class="govuk-list govuk-list--number" id="content"></ol>
         </div>
         <div class="govuk-grid-column-one-third">
-          <h2 class="govuk-heading-l">Recently Published</h2>
+          <h2 class="govuk-heading-xl">Recently Published</h2>
           <ul class="govuk-list" id="recently-published"></ul>
         </div>
       </div>
@@ -104,14 +104,14 @@
     </script>
     <script type="text/mustache" id="content-results-template">
       {{#pages}}
-        <li>
-          {{ title }} <p class="govuk-body govuk-!-font-weight-bold">{{displayHits}} visits</p>
+        <li class="govuk-body-l">
+          {{ title }} <p class="govuk-body-l govuk-!-font-weight-bold">{{displayHits}} visits</p>
         </li>
       {{/pages}}
     </script>
     <script type="text/mustache" id="recently-published-template">
       {{#posts}}
-        <li>{{ title }} - <em>{{type}}</em> <p class="govuk-body govuk-!-font-weight-bold"><span title="{{published}}">{{published}}</span></p> </li>
+        <li class="govuk-body-l">{{ title }} - <em>{{type}}</em> <p class="govuk-body-l govuk-!-font-weight-bold"><span title="{{published}}">{{published}}</span></p> </li>
       {{/posts}}
     </script>
   </body>

@@ -38,21 +38,3 @@ html,body {
     text-align: left; 
     font-size: 72px;
 }
-
-li {
-    font-size: 24px !important;
-}
-li p {
-    font-size: 24px !important;
-}
-
-h2#govuk-notification-banner-title {
-    font-size: 24px !important;
-}
-.govuk-grid-column-one-third p{
-    font-size: 24px !important;
-}
-
-h2.govuk-heading-l {
-    font-size: 48px;
-}
