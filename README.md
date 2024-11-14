@@ -1,12 +1,10 @@
 # GOV.UK Display Screen
 
-**⚠️ This project was archived on 12th July 2024 due to it having been broken for a number of months and due to the Universal Analytics data source being retired**
-
-Screen to display live data from GOV.UK. It displays the number of GOV.UK users in last 30 mins, columns displaying the most recent searches on GOV.UK, the most popular pages and recently published content. Please note, the dashboard is intended as an internal tool only. 
+Screen to display live data from GOV.UK. It displays the number of GOV.UK users in last 30 mins, columns displaying the most recent searches on GOV.UK, the most popular pages and recently published content. Please note, the dashboard is intended as an internal tool only.
 
 ![screenshot](docs/screenshot.png)
 
-http://govuk-display-screen.herokuapp.com/
+https://govuk-display-screen-20e334eeb1ba.herokuapp.com/
 
 ## Running locally
 
