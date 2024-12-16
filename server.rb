@@ -1,3 +1,7 @@
+require_relative "authenticate"
+authenticate()
+
+
 require 'rubygems'
 require 'sinatra'
 require 'json'
@@ -7,8 +11,15 @@ require 'net/https'
 require 'active_support'
 require 'active_support/core_ext/hash'
 require 'dotenv/load'
-require_relative 'content'
-require_relative 'realtime_traffic'
+require "google/analytics/data/v1beta"
+require_relative 'GA4_handlers/active_users'
+require_relative 'GA4_handlers/popular_content'
+require_relative 'GA4_handlers/live_searches'
+autoload :Google, 'google-analytics-data-v1beta'
+
+
+
+
 
 use Rack::Cache
 set :public_folder, 'public'
@@ -25,46 +36,25 @@ get '/' do
   File.read(File.join('public', 'index.html'))
 end
 
-get '/realtime' do
-  cache_control :public, :max_age => 20
-  query = { :access_token => get_token }.merge(params)
-
-  http = Net::HTTP.new('www.googleapis.com', 443)
-  http.use_ssl = true
-  req = Net::HTTP::Get.new("/analytics/v3alpha/data/realtime?#{query.to_param}")
-  response = http.request(req)
-  response.body
+get '/live-searches' do
+  content_type :json
+  most_popular_search_terms
 end
 
 get '/popular-content' do
   content_type :json
-
-  content = Content.new()
-  content.most_popular_govuk_pages
+  popular_content
 end
 
-get '/realtime-traffic' do
+get '/active-users' do
   content_type :json
-  traffic = RealtimeTraffic.new
-  traffic.active_users
+  active_users
 end
 
-def get_token
-  if @token.nil? || @token_timeout < Time.now
-    params = {
-      'client_id' => ENV['CLIENT_ID'],
-      'client_secret' => ENV['CLIENT_SECRET'],
-      'refresh_token' => ENV['REFRESH_TOKEN'],
-      'grant_type' => 'refresh_token'
-    }
-    http = Net::HTTP.new('accounts.google.com', 443)
-    http.use_ssl = true
-    req = Net::HTTP::Post.new('/o/oauth2/token')
-    req.form_data = params
-    response = http.request(req)
-    data = JSON.parse(response.body)
-    @token_timeout = Time.now + data["expires_in"]
-    @token = data["access_token"]
-  end
-  @token
+get '/recently-published' do
+  http = Net::HTTP.new('www.gov.uk', 443)
+  http.use_ssl = true
+  req = Net::HTTP::Get.new('/government/feed')
+  response = http.request(req)
+  JSON.generate Hash.from_xml(response.body)
 end

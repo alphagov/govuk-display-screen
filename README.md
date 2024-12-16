@@ -1,19 +1,17 @@
 # GOV.UK Display Screen
 
-**⚠️ This project was archived on 12th July 2024 due to it having been broken for a number of months and due to the Universal Analytics data source being retired**
-
 Screen to display live data from GOV.UK. It displays the number of GOV.UK users in last 30 mins, columns displaying the most recent searches on GOV.UK, the most popular pages and recently published content. Please note, the dashboard is intended as an internal tool only. 
 
 ![screenshot](docs/screenshot.png)
 
-http://govuk-display-screen.herokuapp.com/
+https://govuk-display-screen-20e334eeb1ba.herokuapp.com/
 
 ## Running locally
 
 To run the server you will need to set up some `ENV` variables. 
 
 We are using the [dotenv gem][1] to load environment variables from a .env file into ENV in development. You will need to create
-a .env file, add it into .gitignore, and then add in the keys for the env vars which can be acquired from the 2nd line Heroku account.
+a .env file following the template of the .env.example file, add it into .gitignore, and then add in the keys for the env vars which can be acquired from the 2nd line Heroku account.
 You can access this account by using the 2nd line credentials held in [govuk-secrets][2].
 
 Once you have them, you should be able to start the server by running:

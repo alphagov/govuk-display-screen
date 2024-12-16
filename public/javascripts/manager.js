@@ -14,6 +14,7 @@
       matrix.traffic.init();
       matrix.search.init();
       matrix.content.init();
+      matrix.recentlyPublished.init();
     },
   };
   root.matrix.manager = manager;
