@@ -2,15 +2,30 @@
 
 
 html,body {
-    background-color: #282D30 !important;
+    background-color: #0b0c0c !important;
+    height: 100vh;
+}
+
+.dashboard-body--flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-body--flex .dashboard-background {
+    flex-grow: 1;
+}
+
+.dashboard-body--black {
+    height: 100vh;
 }
 
 .dashboard-banner {
     border-bottom: 10px solid #0b0c0c;
+    margin-bottom: 40px;
 }
 
 .dashboard-banner-inner {
-    border-bottom: 10px solid #0b0c0c; 
+    border-bottom: 10px solid #0b0c0c;
     margin-left: 20px;
     margin-right: 0 !important;
     max-width: 100% !important;
@@ -21,20 +36,31 @@ html,body {
     justify-content: space-between;
     align-items: center;
 }
+
 #slack-channel-link {
     margin-right: 20px;
     font-size: 32px;
 }
-.govuk-header__logo{
+
+.govuk-header__logo {
     flex: 1;
 }
 
 .dashboard-background {
-    padding: 20px; 
-    background-color: #282D30;
+    padding: 20px;
+    background-color: #0b0c0c;
+}
+
+.dashboard-background--black {
+    background-color: #0b0c0c
 }
 
 .dashboard-number-count {
-    text-align: left; 
+    text-align: left;
     font-size: 72px;
+}
+
+.dashboard-footer {
+    background-color: #111;
+    padding: 1rem;
 }
