@@ -12,6 +12,7 @@
         $body.addClass('tall');
       }
       matrix.traffic.init();
+      matrix.trafficYesterday.init();
       matrix.search.init();
       matrix.content.init();
       matrix.recentlyPublished.init();
