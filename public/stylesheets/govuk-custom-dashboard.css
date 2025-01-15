@@ -9,6 +9,8 @@ html,body {
 .dashboard-body--flex {
     display: flex;
     flex-direction: column;
+    margin: 0;
+    padding: 30px 50px;
 }
 
 .dashboard-body--flex .dashboard-background {
@@ -17,11 +19,6 @@ html,body {
 
 .dashboard-body--black {
     height: 100vh;
-}
-
-.dashboard-banner {
-    border-bottom: 10px solid #0b0c0c;
-    margin-bottom: 40px;
 }
 
 .dashboard-banner-inner {
@@ -47,7 +44,6 @@ html,body {
 }
 
 .dashboard-background {
-    padding: 20px;
     background-color: #0b0c0c;
 }
 
@@ -60,7 +56,7 @@ html,body {
     font-size: 72px;
 }
 
-.dashboard-footer {
-    background-color: #0b0c0c;
-    padding: 1rem;
+.dashboard-logo {
+    align-items: center;
+    display: flex;
 }
