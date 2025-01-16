@@ -109,7 +109,7 @@
         var updateElement = search.updateElement();
         updateElement.prepend('<li class="govuk-body govuk-!-font-size-36 govuk-!-static-margin-bottom-5">'+$('<div class="govuk-body-l">').text(term).html()+'</li>');
         updateElement.css('margin-top',-search.$el.find('li').first().outerHeight(true)).animate({'margin-top':0}, function(){
-          search.$el.find('li:gt(49)').remove();
+          search.$el.find('li:gt(48)').remove();
           root.setTimeout(search.displayResults, (search.nextRefresh - Date.now()) / search.newTerms.length);
         });
       } else {

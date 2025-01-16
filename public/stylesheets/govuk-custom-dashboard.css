@@ -16,6 +16,7 @@ body {
 
 .dashboard-body--flex .dashboard-main {
     flex-grow: 1;
+    overflow: hidden;
 }
 
 .dashboard-logo {
