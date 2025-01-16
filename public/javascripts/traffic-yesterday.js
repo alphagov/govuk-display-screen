@@ -24,7 +24,7 @@
       trafficYesterday.$el = $('#traffic-count-yesterday');
 
       trafficYesterday.reload();
-      // window.setInterval(trafficYesterday.reload, 30e3);
+      window.setInterval(trafficYesterday.reload, 86400000);
     },
     reload: function(){
       var endpoint = trafficYesterday.endpoint();
