@@ -23,3 +23,7 @@ body {
     align-items: center;
     display: flex;
 }
+
+.text-wrap-balance {
+    text-wrap: balance
+}
