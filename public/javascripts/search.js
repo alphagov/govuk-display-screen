@@ -122,7 +122,7 @@
 
       search.reload();
       search.displayResults();
-      window.setInterval(search.reload, 60e3);
+      window.setInterval(search.reload, 10e3);
     },
 
     reload: function(){
