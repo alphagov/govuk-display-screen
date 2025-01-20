@@ -54,14 +54,6 @@
           <h2 class="govuk-heading-xl govuk-!-static-margin-top-8 govuk-!-static-margin-bottom-7">Live searches</h2>
           <ul class="govuk-list" id="search"></ul>
         </div>
-        <div class="govuk-grid-column-one-third" hidden>
-          <h2 class="govuk-heading-xl">Popular in the last 7 days</h2>
-          <ol class="govuk-list govuk-list--number" id="content"></ol>
-        </div>
-        <div class="govuk-grid-column-one-third" hidden>
-          <h2 class="govuk-heading-xl">Recently Published</h2>
-          <ul class="govuk-list" id="recently-published"></ul>
-        </div>
       </div>
     </main>
 
@@ -106,7 +98,6 @@
       document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
     </script>
     <script src="/javascripts/govuk-frontend-4.3.1.min.js"></script>
-    <script src="/javascripts/govuk-frontend-5.8.0.min.js"></script>
     <script>
       window.GOVUKFrontend.initAll()
     </script>
@@ -119,8 +110,6 @@
     <script src="javascripts/search.js"></script>
     <script src="javascripts/traffic.js"></script>
     <script src="javascripts/traffic-yesterday.js"></script>
-    <script src="javascripts/content.js"></script>
-    <script src="javascripts/recently-published.js"></script>
 
     <script src="javascripts/manager.js"></script>
     <script>
