@@ -104,16 +104,17 @@
     },
 
     displayResults: function(){
-      var term = search.newTerms.pop();
+      var term = search.newTerms.pop() || search.terms?.pop()?.term
       if(term){
+        console.warn(term)
         var updateElement = search.updateElement();
-        updateElement.prepend('<li class="govuk-body-l">'+$('<div class="govuk-body-l">').text(term).html()+'</li>');
+        updateElement.prepend('<li class="govuk-body govuk-!-font-size-36 govuk-!-static-margin-bottom-5">'+$('<div class="govuk-body-l">').text(term).html()+'</li>');
         updateElement.css('margin-top',-search.$el.find('li').first().outerHeight(true)).animate({'margin-top':0}, function(){
-          search.$el.find('li:gt(20)').remove();
-          root.setTimeout(search.displayResults, (search.nextRefresh - Date.now()) / search.newTerms.length);
+          search.$el.find('li:gt(18)').remove();
+          root.setTimeout(search.displayResults, 100);
         });
       } else {
-        root.setTimeout(search.displayResults, 5e3);
+        root.setTimeout(search.displayResults, 100);
       }
     },
 
@@ -122,13 +123,13 @@
 
       search.reload();
       search.displayResults();
-      window.setInterval(search.reload, 60e3);
+      window.setInterval(search.reload, 10e3);
     },
 
     reload: function(){
       var endpoint = search.endpoint();
 
-      search.nextRefresh = Date.now() + 60e3;
+      search.nextRefresh = 100 + 100;
       $.ajax({ dataType: 'json', url: endpoint, success: search.parseResponse });
     },
 

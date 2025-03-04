@@ -1,40 +1,29 @@
 /* Note: `!important` is used to override default gov.uk css styles */
 
-
-html,body {
-    background-color: #282D30 !important;
+html,
+body {
+    background-color: #0b0c0c !important;
+    height: 100vh;
 }
 
-.dashboard-banner {
-    border-bottom: 10px solid #0b0c0c;
-}
-
-.dashboard-banner-inner {
-    border-bottom: 10px solid #0b0c0c; 
-    margin-left: 20px;
-    margin-right: 0 !important;
-    max-width: 100% !important;
-}
-
-.dashboard-banner-inner {
+.dashboard-body--flex {
+    box-sizing: border-box;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    margin: 0;
+    padding: 30px 50px;
+}
+
+.dashboard-body--flex .dashboard-main {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.dashboard-logo {
     align-items: center;
-}
-#slack-channel-link {
-    margin-right: 20px;
-    font-size: 32px;
-}
-.govuk-header__logo{
-    flex: 1;
+    display: flex;
 }
 
-.dashboard-background {
-    padding: 20px; 
-    background-color: #282D30;
-}
-
-.dashboard-number-count {
-    text-align: left; 
-    font-size: 72px;
+.text-wrap-balance {
+    text-wrap: balance
 }
