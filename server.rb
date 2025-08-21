@@ -1,7 +1,3 @@
-require_relative "authenticate"
-authenticate()
-
-
 require 'rubygems'
 require 'sinatra'
 require 'json'
@@ -17,9 +13,8 @@ require_relative 'GA4_handlers/popular_content'
 require_relative 'GA4_handlers/live_searches'
 autoload :Google, 'google-analytics-data-v1beta'
 
-
-
-
+require_relative "authenticate"
+authenticate()
 
 use Rack::Cache
 set :public_folder, 'public'
