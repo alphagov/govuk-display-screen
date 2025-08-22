@@ -1,4 +1,6 @@
-require "google/analytics/data/v1beta"
+# frozen_string_literal: true
+
+require 'google/analytics/data/v1beta'
 
 def popular_content
   client = ::Google::Analytics::Data::V1beta::AnalyticsData::Client.new
@@ -6,59 +8,57 @@ def popular_content
   start_date = Date.today - 6
   end_date = Date.today
 
-  past_week = { start_date: start_date.to_s, end_date: end_date.to_s}
+  past_week = { start_date: start_date.to_s, end_date: end_date.to_s }
 
   path_dimension = Google::Analytics::Data::V1beta::Dimension.new(
-    name: "pagePath"
+    name: 'pagePath'
   )
   title_dimension = Google::Analytics::Data::V1beta::Dimension.new(
-    name: "pageTitle"
+    name: 'pageTitle'
   )
   screen_page_views_metric = Google::Analytics::Data::V1beta::Metric.new(
-    name: "screenPageViews"
+    name: 'screenPageViews'
   )
 
   request = ::Google::Analytics::Data::V1beta::RunReportRequest.new({
-    property: "properties/330577055",
-    date_ranges: [
-      past_week
-    ],
-    dimensions: [path_dimension, title_dimension],
-    metrics: [screen_page_views_metric],
-    limit: 10
-  })
-
+                                                                      property: 'properties/330577055',
+                                                                      date_ranges: [
+                                                                        past_week
+                                                                      ],
+                                                                      dimensions: [path_dimension, title_dimension],
+                                                                      metrics: [screen_page_views_metric],
+                                                                      limit: 10
+                                                                    })
 
   response = client.run_report request
   response_hash = response.to_h
 
-
   begin
     rows = response_hash[:rows]
   rescue StandardError => e
-    puts "#{e.message}"
+    puts e.message
     [
       {
-        page_views: "No data available",
-        page_path: "",
-        page_title: "No data available"
+        page_views: 'No data available',
+        page_path: '',
+        page_title: 'No data available'
       }.to_json
     ]
   else
     formatted = []
     rows.each do |row|
-      page_title = row.dig(:dimension_values)[1].dig(:value)
-      other_result = page_title == "(other)"
-      unless other_result
-        to_format = row.dig(:metric_values).first.dig(:value)
-        formatted_page_views_with_commas = to_format.reverse.chars.each_slice(3).map(&:join).join(',').reverse
-        row_data = {
-          page_views: formatted_page_views_with_commas,
-          page_path: row.dig(:dimension_values).first.dig(:value),
-          page_title: page_title
-        }
-        formatted << row_data
-      end
+      page_title = row[:dimension_values][1][:value]
+      other_result = page_title == '(other)'
+      next if other_result
+
+      to_format = row[:metric_values].first[:value]
+      formatted_page_views_with_commas = to_format.reverse.chars.each_slice(3).map(&:join).join(',').reverse
+      row_data = {
+        page_views: formatted_page_views_with_commas,
+        page_path: row[:dimension_values].first[:value],
+        page_title: page_title
+      }
+      formatted << row_data
     end
     formatted.to_json
   end

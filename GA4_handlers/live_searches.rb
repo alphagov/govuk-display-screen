@@ -1,5 +1,6 @@
-require "google/analytics/data/v1beta"
+# frozen_string_literal: true
 
+require 'google/analytics/data/v1beta'
 
 def most_popular_search_terms
   # Gets the most searched search terms for the last 30min
@@ -9,15 +10,15 @@ def most_popular_search_terms
   client = ::Google::Analytics::Data::V1beta::AnalyticsData::Client.new
 
   metric = Google::Analytics::Data::V1beta::Metric.new(
-    name: "activeUsers"
+    name: 'activeUsers'
   )
 
   dimension = Google::Analytics::Data::V1beta::Dimension.new(
-    name: "unifiedScreenName"  # This provides the title of the page
+    name: 'unifiedScreenName' # This provides the title of the page
   )
 
   req = {
-    property: "properties/330577055",
+    property: 'properties/330577055',
     metrics: [metric],
     dimensions: [dimension],
     limit: 2000
@@ -31,14 +32,14 @@ def most_popular_search_terms
     page_title = row.dimension_values.first.value
     active_users_count = row.metric_values.first.value.to_i
 
-    if page_title.include?(" - Search - ")
-      search_term = page_title.split(" - Search - ").first
+    next unless page_title.include?(' - Search - ')
 
-      data << {
-        page_slug: search_term,
-        active_users_count: active_users_count
-      }
-    end
+    search_term = page_title.split(' - Search - ').first
+
+    data << {
+      page_slug: search_term,
+      active_users_count: active_users_count
+    }
   end
 
   data.to_json
