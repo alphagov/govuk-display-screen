@@ -9,6 +9,7 @@ require 'active_support/core_ext/hash'
 require 'dotenv/load'
 require "google/analytics/data/v1beta"
 require_relative 'GA4_handlers/active_users'
+require_relative 'GA4_handlers/active_users_yesterday'
 require_relative 'GA4_handlers/popular_content'
 require_relative 'GA4_handlers/live_searches'
 autoload :Google, 'google-analytics-data-v1beta'
@@ -44,6 +45,11 @@ end
 get '/active-users' do
   content_type :json
   active_users
+end
+
+get '/active-users-yesterday' do
+  content_type :json
+  active_users_yesterday
 end
 
 get '/recently-published' do

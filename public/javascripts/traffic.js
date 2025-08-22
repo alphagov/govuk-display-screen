@@ -13,6 +13,7 @@
     },
     
     parseResponse: function(data){
+      console.warn(data)
       traffic.user_count = data.active_users_30_minutes
       traffic.displayResults() 
     },
