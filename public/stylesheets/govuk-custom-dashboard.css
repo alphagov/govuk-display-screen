@@ -6,11 +6,12 @@ html,body {
 }
 
 .dashboard-banner {
-    border-bottom: 10px solid #0b0c0c;
+    background-color: #1d70b8;
+    border-bottom: 10px solid #282D30;
 }
 
 .dashboard-banner-inner {
-    border-bottom: 10px solid #0b0c0c; 
+    border-bottom: 10px solid #282D30; 
     margin-left: 20px;
     margin-right: 0 !important;
     max-width: 100% !important;
