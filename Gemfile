@@ -11,3 +11,4 @@ gem "dotenv"
 gem "google-analytics-data-v1beta"
 gem "rackup"
 gem 'puma'
+gem 'rexml'

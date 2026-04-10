@@ -9,7 +9,7 @@
     user_count: 0,
 
     endpoint: function(){
-      return "/realtime-traffic";
+      return "/active-users";
     },
     
     parseResponse: function(data){
