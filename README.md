@@ -2,8 +2,6 @@
 
 Screen to display live data from GOV.UK. It displays the number of GOV.UK users in last 30 mins, columns displaying the most recent searches on GOV.UK, the most popular pages and recently published content. Please note, the dashboard is intended as an internal tool only. 
 
-![screenshot](docs/screenshot.png)
-
 https://govuk-display-screen-20e334eeb1ba.herokuapp.com/
 
 ## Running locally
