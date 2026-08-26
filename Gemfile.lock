@@ -119,7 +119,7 @@ GEM
     nio4r (2.7.5)
     os (1.1.4)
     public_suffix (7.0.5)
-    puma (7.2.1)
+    puma (8.0.2)
       nio4r (~> 2.0)
     rack (3.2.6)
     rack-cache (1.17.0)
